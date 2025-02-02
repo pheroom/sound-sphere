@@ -1,0 +1,39 @@
+@import url("reset.css");
+@import url("global.css");
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font: var(--font-m);
+    color: var(--primary-color);
+    /*overflow-y: scroll;*/
+}
+
+.app {
+    background: var(--bg-color);
+    min-height: 100vh;
+    flex-direction: column;
+    position: relative;
+}
+
+.container {
+    max-width: 100%;
+    width: calc(var(--layout-width) + 30px);
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.page-layout {
+    display: flex;
+    min-height: calc(100vh - var(--navbar-height));
+}
+
+.page-wrapper {
+    flex-grow: 1;
+    /*padding-left: 10px;*/
+    padding-top: 16px;
+}

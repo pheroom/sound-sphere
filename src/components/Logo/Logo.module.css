@@ -1,0 +1,14 @@
+.Logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    img{
+        max-width: 35px;
+    }
+    span{
+        margin-top: -3px;
+        font-weight: 500;
+        font-size: 20px;
+    }
+}

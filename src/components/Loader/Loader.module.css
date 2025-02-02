@@ -1,0 +1,35 @@
+.Loader {
+    border-radius: 10px;
+    width: 130px;
+    height: 55px;
+    background: rgb(from #fff r g b / 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loaderItem {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 32px 0 #fff, -32px 0 #fff;
+    animation: flash 0.5s ease-out infinite alternate;
+}
+
+@keyframes flash {
+    0% {
+        background-color: #fff2;
+        box-shadow: 32px 0 #fff2, -32px 0 #fff;
+    }
+
+    50% {
+        background-color: #fff;
+        box-shadow: 32px 0 #fff2, -32px 0 #fff2;
+    }
+
+    100% {
+        background-color: #fff2;
+        box-shadow: 32px 0 #fff, -32px 0 #fff2;
+    }
+}
