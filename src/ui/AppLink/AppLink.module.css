@@ -1,0 +1,66 @@
+.AppLink {
+    color: var(--primary-color);
+    outline: none;
+    border: none;
+    &:focus{
+        /*margin: -2px;*/
+        /*border-radius: var(--border-radius);*/
+        /*border: 2px solid var(--primary-color);*/
+    }
+}
+
+.accent {
+    color: var(--primary-color);
+}
+
+.link{
+    font: var(--font-s);
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.button{
+    border-radius: var(--border-radius);
+    padding: 0 16px;
+    min-width: 80px;
+    font: var(--font-s);
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    cursor: pointer;
+    background: var(--primary-color);
+    color: var(--inverted-primary-color);
+    &:hover {
+        background: var(--primary-hover-color);
+    }
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    span {
+        margin-top: -1px;
+    }
+
+    &.positive {
+        background: var(--green-color-dark);
+        color: white;
+        &:hover {
+            background: var(--green-color-light);
+        }
+    }
+
+    &.size_l{
+        min-height: 36px;
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    &.size_s{
+        min-height: 28px;
+        font-size: 13px;
+        line-height: 16px;
+    }
+}
+

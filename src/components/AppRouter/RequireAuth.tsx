@@ -6,7 +6,7 @@ import { AppRoutes, TargetTypes } from '../../routeConfig.tsx';
 export const RequireAuth = ({ children, authTargets }: { children: JSX.Element, authTargets: TargetTypes[] }) => {
     // const auth = useSelector(getUserAuthData);
     const auth = false;
-    const location = useLocation();
+    // const location = useLocation();
     // if (!auth) {
     //     return <Navigate to={AppRoutes.MAIN} state={{ from: location }} replace />;
     // }

@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import { Link } from 'react-router';
 import { classNames } from '../../utils/classNames.ts';
 import cls from './Logo.module.css';
-import logo from '../../../public/logo.png';
 import { AppRoutes } from '../../routeConfig.tsx';
+import logo from '../../assets/icons/logo.png';
 
 interface LogoProps{
     className?: string

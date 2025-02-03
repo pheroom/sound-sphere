@@ -1,5 +1,9 @@
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage.tsx';
 import { MainPage } from './pages/MainPage/MainPage.tsx';
+import { SignOnPage } from './pages/SignOnPage/SignOnPage.tsx';
+import { SignInPage } from './pages/SignInPage/SignInPage.tsx';
+import { ArtistSignInPage } from './pages/ArtistSignInPage/ArtistSignInPage.tsx';
+import { ArtistSignOnPage } from './pages/ArtistSignOnPage/ArtistSignOnPage.tsx';
 
 export enum AppRoutes{
     MAIN = '/',
@@ -21,10 +25,10 @@ export type appRouteType = {path: AppRoutes | '*', element: JSX.Element, targets
 
 export const routeConfig: appRouteType[] = [
     { path: AppRoutes.MAIN, element: <MainPage />, targets: [TargetTypes.USER, TargetTypes.ARTIST, TargetTypes.UNLOGIN] },
-    { path: AppRoutes.ARTIST_SIGN_IN, element: <>artist sign in</>, targets: [TargetTypes.UNLOGIN] },
-    { path: AppRoutes.ARTIST_SIGN_ON, element: <>artist sign on</>, targets: [TargetTypes.UNLOGIN] },
-    { path: AppRoutes.SIGN_IN, element: <>sign in</>, targets: [TargetTypes.UNLOGIN] },
-    { path: AppRoutes.SIGN_ON, element: <>sign on</>, targets: [TargetTypes.UNLOGIN] },
+    { path: AppRoutes.ARTIST_SIGN_IN, element: <ArtistSignInPage />, targets: [TargetTypes.UNLOGIN] },
+    { path: AppRoutes.ARTIST_SIGN_ON, element: <ArtistSignOnPage />, targets: [TargetTypes.UNLOGIN] },
+    { path: AppRoutes.SIGN_IN, element: <SignInPage />, targets: [TargetTypes.UNLOGIN] },
+    { path: AppRoutes.SIGN_ON, element: <SignOnPage />, targets: [TargetTypes.UNLOGIN] },
 
     { path: AppRoutes.TRACKS, element: <>tracks</>, targets: [TargetTypes.USER, TargetTypes.ARTIST] },
     { path: AppRoutes.ALBUMS, element: <>albums</>, targets: [TargetTypes.USER, TargetTypes.ARTIST] },

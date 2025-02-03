@@ -11,9 +11,10 @@
     justify-content: space-between;
 }
 
-.nav {
+.links {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 25px;
 }
+
