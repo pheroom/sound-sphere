@@ -3,6 +3,7 @@ import './styles/index.css';
 import { Navbar } from './components/Navbar/Navbar.tsx';
 import { classNames } from './utils/classNames.ts';
 import { AppRouter } from './components/AppRouter/AppRouter.tsx';
+import { Player } from './components/Player/Player.tsx';
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                     {/* {userInited && <AppRouter/>} */}
                     <AppRouter />
                 </div>
+                <Player />
             </Suspense>
         </div>
     );

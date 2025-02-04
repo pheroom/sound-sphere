@@ -1,0 +1,100 @@
+.Player {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.mainBlock{
+    height: 55px;
+    padding: 5px 15px;
+    border-radius: 12px;
+    background: rgb(44,52,57);
+    background: linear-gradient(90deg, rgba(44,52,57,1) 0%, rgba(52,61,68,1) 50%, rgba(36,45,49,1) 100%);
+    margin: 0 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.fullInfoBlock{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.infoBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: -2px;
+    gap: 4px;
+}
+
+.artists{
+    color: #798795;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.name{
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
+}
+
+.cover{
+    max-width: 35px;
+}
+
+.volumeProgress{
+    /*width: 150px;*/
+}
+
+.icon{
+    color: var(--blue-color);
+}
+
+.iconButton{
+    border: none;
+    outline: none;
+    padding: 3px;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon{
+        color: var(--primary-color);
+    }
+}
+
+.timeInfo{
+    color: var(--grey-color);
+    /*font: var(--font-s);*/
+    font-size: 13px;
+}
+
+.volumeBlock{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    .icon{
+        cursor: pointer;
+    }
+}
+
+.timeProgress{
+    flex-grow: 1;
+}

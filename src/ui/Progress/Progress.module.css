@@ -1,0 +1,44 @@
+.Progress {
+    min-width: 80px;
+    height: 26px;
+    display: flex;
+    cursor: pointer;
+}
+
+.thumb{
+    height: var(--thumb-size);
+    width: var(--thumb-size);
+    border-radius: 50%;
+    background-color: var(--blue-color);
+    outline: none;
+    cursor: pointer!important;
+    position: relative;
+
+    &.invisible{
+        background: transparent;
+    }
+
+    .thumbInfo{
+        opacity: 0;
+        position: absolute;
+        height: 40px;
+        border-radius: var(--border-radius);
+        top: -500%;
+        /*left: 0;*/
+        /*right: 0;*/
+        font: var(--font-s);
+        padding: 10px;
+        background: var(--bg-color-content);
+    }
+
+    &:hover .thumbInfo{
+        opacity: 1;
+    }
+}
+
+.activeBar{
+    height: 3px;
+    width: 100%;
+    border-radius: 4px;
+    align-self: center;
+}

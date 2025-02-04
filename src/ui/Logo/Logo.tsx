@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { classNames } from '../../utils/classNames.ts';
 import cls from './Logo.module.css';
 import { AppRoutes } from '../../routeConfig.tsx';
-import logo from '../../assets/icons/logo.png';
+import logo from '../../assets/logo.png';
 
 interface LogoProps{
     className?: string
