@@ -6,12 +6,15 @@ import { PageLoader } from '../PageLoader/PageLoader.tsx';
 
 export const AppRouter = memo(() => {
     const renderWithWrapper = useCallback((route: appRouteType) => {
-        const element = <div className="page-wrapper">{route.element}</div>;
         return (
             <Route
                 key={route.path}
                 path={route.path}
-                element={<RequireAuth authTargets={route.targets}>{element}</RequireAuth>}
+                element={(
+                    <div className="page-wrapper">
+                        <RequireAuth authTargets={route.targets}>{route.element}</RequireAuth>
+                    </div>
+                )}
             />
         );
     }, []);

@@ -1,0 +1,53 @@
+import { memo } from 'react';
+import { useNavigate } from 'react-router';
+import cls from './ArtistProfilePage.module.css';
+import { classNames } from '../../utils/classNames.ts';
+import { AppRoutes } from '../../routeConfig.tsx';
+import { useAppDispatch, useAppSelector } from '../../store/store.ts';
+import { Button } from '../../ui/Button/Button.tsx';
+import { authLogout } from '../../models/auth/services/authLogout.ts';
+import { AppLink, AppLinkMode, AppLinkTheme } from '../../ui/AppLink/AppLink.tsx';
+import { getArtistAuthData } from '../../models/artist/selectors/getArtistAuthData.ts';
+
+export const ArtistProfilePage = memo(() => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    const artist = useAppSelector(getArtistAuthData);
+
+    const logoutClick = async () => {
+        const res = await dispatch(authLogout());
+        if (res.meta.requestStatus === 'fulfilled') {
+            navigate(AppRoutes.SIGN_IN);
+        }
+    };
+
+    if (!artist) return <div>artist loading...</div>;
+    return (
+        <div className={classNames(cls.ArtistProfilePage, {}, [])}>
+
+            {artist.avatarURL ? <img src={artist.avatarURL} alt="avatarImg" /> : <i>avatar not set</i>}
+
+            <br />
+            <span>{artist.name}</span>
+            <br />
+            <span>{artist.username}</span>
+            <br />
+            <span>{artist.description || <i>desc not set</i>}</span>
+
+            <br />
+            <br />
+            <Button onClick={logoutClick}>Logout</Button>
+
+            <br />
+            <AppLink
+                mode={AppLinkMode.BUTTON}
+                theme={AppLinkTheme.POSITIVE}
+                to={AppRoutes.ARTIST_EDIT_PROFILE}
+            >
+                Edit Profile
+            </AppLink>
+
+        </div>
+    );
+});

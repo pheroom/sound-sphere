@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: space-between;
     width: 272px;
+    position: relative;
 }
 
 .sep {
@@ -28,4 +29,14 @@
     margin-top: 16px;
     margin-bottom: 20px;
     font-weight: 500;
+}
+
+.error{
+    position: absolute;
+    top: calc(100% + 15px);
+    max-height: 200px;
+    font: var(--font-s);
+    color: var(--red-color);
+    overflow-y: hidden;
+    align-self: flex-start;
 }

@@ -1,14 +1,20 @@
-import { Navigate, useLocation } from 'react-router';
-import { AppRoutes, TargetTypes } from '../../routeConfig.tsx';
-// import { useSelector } from 'react-redux';
-// import { getUserAuthData } from 'entities/User';
+import { AppRoutes } from '../../routeConfig.tsx';
+import { useAppSelector } from '../../store/store.ts';
+import { getAuthTarget } from '../../models/auth/selectors/getAuthTarget.ts';
+import { AppLink, AppLinkMode } from '../../ui/AppLink/AppLink.tsx';
+import { TargetTypes } from '../../models/auth/authSchema.ts';
 
 export const RequireAuth = ({ children, authTargets }: { children: JSX.Element, authTargets: TargetTypes[] }) => {
-    // const auth = useSelector(getUserAuthData);
-    const auth = false;
-    // const location = useLocation();
-    // if (!auth) {
-    //     return <Navigate to={AppRoutes.MAIN} state={{ from: location }} replace />;
-    // }
+    const authTarget = useAppSelector(getAuthTarget);
+    if (!authTargets.includes(authTarget)) {
+        return (
+            <div>
+                <div>you don`t have perm to visit this page</div>
+                <br />
+                <br />
+                <AppLink mode={AppLinkMode.BUTTON} to={AppRoutes.MAIN}>Go to main page</AppLink>
+            </div>
+        );
+    }
     return children;
 };

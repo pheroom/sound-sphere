@@ -5,25 +5,34 @@ import { Input } from '../../ui/Input/Input.tsx';
 import { Button, ButtonSize } from '../../ui/Button/Button.tsx';
 import { AppLink, AppLinkMode, AppLinkSize, AppLinkTheme } from '../../ui/AppLink/AppLink.tsx';
 import { AppRoutes } from '../../routeConfig.tsx';
+import { useAppDispatch, useAppSelector } from '../../store/store.ts';
+import { getArtistIsLoading } from '../../models/artist/selectors/getArtistIsLoading.ts';
+import { getArtistError } from '../../models/artist/selectors/getArtistError.ts';
+import { artistLoginByUsername } from '../../models/artist/services/artistLoginByUsername.ts';
 
 interface ArtistSignInFormProps {
     className?: string
+    onSuccess?: () => void
 }
 
-export const ArtistSignInForm = memo(({ className }: ArtistSignInFormProps) => {
+export const ArtistSignInForm = memo(({ className, onSuccess }: ArtistSignInFormProps) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const signInClick = () => {
-        alert('artist sign in');
-    };
+    const dispatch = useAppDispatch();
+    const isLoading = useAppSelector(getArtistIsLoading);
+    const error = useAppSelector(getArtistError);
 
-    const isLoading = false;
+    const signInClick = async () => {
+        const res = await dispatch(artistLoginByUsername({ username, password }));
+        if (res.meta.requestStatus === 'fulfilled' && onSuccess) {
+            onSuccess();
+        }
+    };
 
     return (
         <div className={classNames(cls.ArtistSignInForm, {}, [className])}>
             <p className={cls.title}>Sign In As Artist</p>
-            {/* {error && <Text text="Неверный логин или пароль" theme={TextTheme.ERROR}/>} */}
             <Input
                 fullWidth
                 placeholder="Username"
@@ -54,6 +63,7 @@ export const ArtistSignInForm = memo(({ className }: ArtistSignInFormProps) => {
             >
                 Create Artist Account
             </AppLink>
+            {error && <div className={cls.error}>{error}</div>}
         </div>
     );
 });

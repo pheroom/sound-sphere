@@ -18,7 +18,7 @@ export const Progress = memo(({ className, haveThumb = false, value, onChange, m
 
     return (
         <Range
-            step={0.1}
+            step={0.001}
             min={min}
             max={max}
             values={[value]}

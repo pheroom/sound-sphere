@@ -63,6 +63,10 @@ export const Player = memo(({ className }: PlayerProps) => {
         return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
     };
 
+    const isAuth = true;
+
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    if (isAuth) return <></>;
     return (
         <div className={classNames(cls.Player, {}, [className, 'container'])}>
             <div className={cls.mainBlock}>
@@ -80,13 +84,13 @@ export const Player = memo(({ className }: PlayerProps) => {
                 </button>
                 <Progress
                     className={cls.timeProgress}
-                    haveThumb
+                    // haveThumb
                     min={0}
                     max={duration}
                     value={currentTime}
                     onChange={changeTimeHandler}
                 />
-                <div className={cls.timeInfo}>
+                <div className={classNames(cls.timeInfo, {}, ['noselect'])}>
                     {`${getPrettyTime(currentTime)} / ${getPrettyTime(duration)}`}
                 </div>
                 <div className={cls.volumeBlock}>

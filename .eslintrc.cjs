@@ -49,5 +49,8 @@ module.exports = {
         'no-restricted-syntax': 'off',
         'no-undef': 'off',
         'react/no-array-index-key': 'off',
+        'consistent-return': 'off',
+        'default-case': 'warn',
+        'react/jsx-no-useless-fragment': 'warn'
     },
 };

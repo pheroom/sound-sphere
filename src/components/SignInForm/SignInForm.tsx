@@ -5,25 +5,34 @@ import { Input } from '../../ui/Input/Input.tsx';
 import { Button, ButtonSize } from '../../ui/Button/Button.tsx';
 import { AppLink, AppLinkMode, AppLinkSize, AppLinkTheme } from '../../ui/AppLink/AppLink.tsx';
 import { AppRoutes } from '../../routeConfig.tsx';
+import { useAppDispatch, useAppSelector } from '../../store/store.ts';
+import { getUserIsLoading } from '../../models/user/selectors/getUserIsLoading.ts';
+import { getUserError } from '../../models/user/selectors/getUserError.ts';
+import { userLoginByUsername } from '../../models/user/services/userLoginByUsername.ts';
 
 interface SignInFormProps {
     className?: string
+    onSuccess?: () => void
 }
 
-export const SignInForm = memo(({ className }: SignInFormProps) => {
+export const SignInForm = memo(({ className, onSuccess }: SignInFormProps) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const signInClick = () => {
-        alert('sign in');
-    };
+    const dispatch = useAppDispatch();
+    const isLoading = useAppSelector(getUserIsLoading);
+    const error = useAppSelector(getUserError);
 
-    const isLoading = false;
+    const signInClick = async () => {
+        const res = await dispatch(userLoginByUsername({ username, password }));
+        if (res.meta.requestStatus === 'fulfilled' && onSuccess) {
+            onSuccess();
+        }
+    };
 
     return (
         <div className={classNames(cls.SignInForm, {}, [className])}>
             <p className={cls.title}>Sign In</p>
-            {/* {error && <Text text="Неверный логин или пароль" theme={TextTheme.ERROR}/>} */}
             <Input
                 fullWidth
                 placeholder="Username"
@@ -54,6 +63,7 @@ export const SignInForm = memo(({ className }: SignInFormProps) => {
             >
                 Create Account
             </AppLink>
+            {error && <div className={cls.error}>{error}</div>}
         </div>
     );
 });
