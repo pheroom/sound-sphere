@@ -19,6 +19,13 @@ export interface CreateUserDto {
     lastname?: string
 }
 
+export interface UpdateUserDto {
+    username?: string
+    firstname?: string
+    lastname?: string
+    description?: string
+}
+
 export interface UserSchema{
     authData?: User
     isLoading: boolean

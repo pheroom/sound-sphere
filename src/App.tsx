@@ -7,10 +7,13 @@ import { Player } from './components/Player/Player.tsx';
 import { useAppDispatch, useAppSelector } from './store/store.ts';
 import { getAuthInited } from './models/auth/selectors/getAuthInited.ts';
 import { checkAuthTarget } from './models/auth/services/checkAuthTarget.ts';
+import { PageLoader } from './components/PageLoader/PageLoader.tsx';
+import { getAuthIsLoading } from './models/auth/selectors/getAuthIsLoading.ts';
 
 function App() {
     const dispatch = useAppDispatch();
     const isAuthInited = useAppSelector(getAuthInited);
+    const authIsLoading = useAppSelector(getAuthIsLoading);
 
     useEffect(() => {
         if (!isAuthInited) {
@@ -26,6 +29,7 @@ function App() {
                     {isAuthInited && <AppRouter />}
                 </div>
                 <Player />
+                {authIsLoading && <PageLoader />}
             </Suspense>
         </div>
     );

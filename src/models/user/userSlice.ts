@@ -5,6 +5,7 @@ import { USER_LOCALSTORAGE_KEY } from '../../utils/const.ts';
 import { userLoginByUsername } from './services/userLoginByUsername.ts';
 import { userRegistration } from './services/userRegistration.ts';
 import { checkUserAuth } from './services/checkUserAuth.ts';
+import { updateUserProfile } from './services/updateUserProfile.ts';
 
 const initialState: UserSchema = {
     isLoading: false,
@@ -46,14 +47,14 @@ export const userSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload;
             })
-            .addCase(checkUserAuth.pending, (state, action) => {
+            .addCase(updateUserProfile.pending, (state, action) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(checkUserAuth.fulfilled, (state, action) => {
+            .addCase(updateUserProfile.fulfilled, (state, action) => {
                 state.isLoading = false;
             })
-            .addCase(checkUserAuth.rejected, (state, action) => {
+            .addCase(updateUserProfile.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

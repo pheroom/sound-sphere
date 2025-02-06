@@ -65,7 +65,6 @@ export const Player = memo(({ className }: PlayerProps) => {
 
     const isAuth = true;
 
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     if (isAuth) return <></>;
     return (
         <div className={classNames(cls.Player, {}, [className, 'container'])}>

@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes, memo } from 'react';
+import { ChangeEvent, InputHTMLAttributes, memo } from 'react';
 import cls from './Input.module.css';
 import { classNames, Mods } from '../../utils/classNames.ts';
 
@@ -21,7 +21,7 @@ export const Input = memo(({
 }: InputProps) => {
     const mods: Mods = { [cls.fullWidth]: fullWidth };
 
-    const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
     };
 

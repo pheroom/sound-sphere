@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 import { LoginUserDto, User } from '../userSchema.ts';
 import { USER_LOCALSTORAGE_KEY } from '../../../utils/const.ts';
 import { userActions } from '../userSlice.ts';
@@ -16,9 +17,9 @@ export const checkUserAuth = createAsyncThunk<User, void, ThunkConfig<string>>(
             }
             dispatch(userActions.setAuthData(response.data));
             return response.data;
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
-            return rejectWithValue(getFetchError(e));
+            return rejectWithValue(e);
         }
     },
 );

@@ -1,16 +1,19 @@
 import { memo } from 'react';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import cls from './Navbar.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { Logo } from '../../ui/Logo/Logo.tsx';
 import { AppLink, AppLinkMode } from '../../ui/AppLink/AppLink.tsx';
-import { useAppDispatch, useAppSelector } from '../../store/store.ts';
+import { useAppSelector } from '../../store/store.ts';
 import { getAuthTarget } from '../../models/auth/selectors/getAuthTarget.ts';
 import { TargetTypes } from '../../models/auth/authSchema.ts';
-import { Button } from '../../ui/Button/Button.tsx';
 import { getAuthInited } from '../../models/auth/selectors/getAuthInited.ts';
-import { authLogout } from '../../models/auth/services/authLogout.ts';
+import { Avatar } from '../../ui/Avatar/Avatar.tsx';
+import { UserCard, UserCardSize } from '../UserCard/UserCard.tsx';
+import { getUserAuthData } from '../../models/user/selectors/getUserAuthData.ts';
+import { getArtistAuthData } from '../../models/artist/selectors/getArtistAuthData.ts';
+import { ArtistCard, ArtistCardSize } from '../ArtistCard/ArtistCard.tsx';
 
 interface NavbarProps{
     className?: string,
@@ -19,6 +22,8 @@ interface NavbarProps{
 export const Navbar = memo(({ className }: NavbarProps) => {
     const isAuthInited = useAppSelector(getAuthInited);
     const authTarget = useAppSelector(getAuthTarget);
+    const user = useAppSelector(getUserAuthData);
+    const artist = useAppSelector(getArtistAuthData);
 
     const contentForUnlogin = (
         <nav className={cls.links}>
@@ -32,7 +37,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     );
 
     const contentForUser = (
-        <nav className={cls.links}>
+        <nav className={cls.mainLinks}>
             <AppLink className={cls.navLink} activeClassName={cls.activeNavLink} navLink to={AppRoutes.TRACKS}>
                 Tracks
             </AppLink>
@@ -43,31 +48,15 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                 Playlists
             </AppLink>
             <Link to={AppRoutes.PROFILE} className={cls.profileLink}>
-                <img
-                    className={cls.avatarImg}
-                    src="https://avatars.cloudflare.steamstatic.com/a559e8bee2492a9a551c53e1c6558fe948409fea_full.jpg"
-                    alt="avatarImg"
-                />
-                <div className={cls.userInfo}>
-                    <span className={cls.fullname}>Johan Liebert</span>
-                    <span className={cls.username}>demon6</span>
-                </div>
+                <UserCard user={user} size={UserCardSize.S} />
             </Link>
         </nav>
     );
 
     const contentForArtist = (
-        <nav className={cls.links}>
+        <nav className={cls.mainLinks}>
             <Link to={AppRoutes.ARTIST_PROFILE} className={cls.profileLink}>
-                <img
-                    className={cls.avatarImg}
-                    src="https://avatars.cloudflare.steamstatic.com/a559e8bee2492a9a551c53e1c6558fe948409fea_full.jpg"
-                    alt="avatarImg"
-                />
-                <div className={cls.userInfo}>
-                    <span className={cls.fullname}>Johan Liebert</span>
-                    <span className={cls.username}>demon6</span>
-                </div>
+                <ArtistCard artist={artist} size={ArtistCardSize.S} />
             </Link>
         </nav>
     );

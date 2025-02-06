@@ -4,10 +4,11 @@ import cls from './ArtistProfilePage.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
-import { Button } from '../../ui/Button/Button.tsx';
+import { Button, ButtonTheme } from '../../ui/Button/Button.tsx';
 import { authLogout } from '../../models/auth/services/authLogout.ts';
 import { AppLink, AppLinkMode, AppLinkTheme } from '../../ui/AppLink/AppLink.tsx';
 import { getArtistAuthData } from '../../models/artist/selectors/getArtistAuthData.ts';
+import { ArtistCard } from '../../components/ArtistCard/ArtistCard.tsx';
 
 export const ArtistProfilePage = memo(() => {
     const navigate = useNavigate();
@@ -25,29 +26,15 @@ export const ArtistProfilePage = memo(() => {
     if (!artist) return <div>artist loading...</div>;
     return (
         <div className={classNames(cls.ArtistProfilePage, {}, [])}>
-
-            {artist.avatarURL ? <img src={artist.avatarURL} alt="avatarImg" /> : <i>avatar not set</i>}
-
-            <br />
-            <span>{artist.name}</span>
-            <br />
-            <span>{artist.username}</span>
-            <br />
-            <span>{artist.description || <i>desc not set</i>}</span>
-
-            <br />
-            <br />
-            <Button onClick={logoutClick}>Logout</Button>
-
-            <br />
-            <AppLink
-                mode={AppLinkMode.BUTTON}
-                theme={AppLinkTheme.POSITIVE}
-                to={AppRoutes.ARTIST_EDIT_PROFILE}
-            >
-                Edit Profile
-            </AppLink>
-
+            <div className={cls.header}>
+                <ArtistCard artist={artist} className={cls.userCard} />
+                <div className={cls.actions}>
+                    <Button onClick={logoutClick} theme={ButtonTheme.NEGATIVE}>Logout</Button>
+                    <AppLink mode={AppLinkMode.BUTTON} theme={AppLinkTheme.POSITIVE} to={AppRoutes.ARTIST_EDIT_PROFILE}>
+                        Edit Profile
+                    </AppLink>
+                </div>
+            </div>
         </div>
     );
 });

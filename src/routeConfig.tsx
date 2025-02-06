@@ -7,6 +7,8 @@ import { ArtistSignOnPage } from './pages/ArtistSignOnPage/ArtistSignOnPage.tsx'
 import { TargetTypes } from './models/auth/authSchema.ts';
 import { ProfilePage } from './pages/ProfilePage/ProfilePage.tsx';
 import { ArtistProfilePage } from './pages/ArtistProfilePage/ArtistProfilePage.tsx';
+import { EditProfilePage } from './pages/EditProfilePage/EditProfilePage.tsx';
+import { EditArtistProfilePage } from './pages/EditArtistProfilePage/EditArtistProfilePage.tsx';
 
 export enum AppRoutes{
     MAIN = '/',
@@ -17,6 +19,7 @@ export enum AppRoutes{
     TRACKS = '/tracks',
     ALBUMS = '/albums',
     PLAYLISTS = '/playlists',
+    ARTISTS = '/artists',
     PROFILE = '/profile',
     EDIT_PROFILE = '/edit-profile',
     ARTIST_PROFILE = '/artist-profile',
@@ -32,15 +35,15 @@ export const routeConfig: appRouteType[] = [
     { path: AppRoutes.SIGN_IN, element: <SignInPage />, targets: [TargetTypes.UNLOGIN] },
     { path: AppRoutes.SIGN_ON, element: <SignOnPage />, targets: [TargetTypes.UNLOGIN] },
 
-    { path: AppRoutes.TRACKS, element: <>tracks</>, targets: [TargetTypes.USER, TargetTypes.ARTIST] },
-    { path: AppRoutes.ALBUMS, element: <>albums</>, targets: [TargetTypes.USER, TargetTypes.ARTIST] },
-    { path: AppRoutes.PLAYLISTS, element: <>playlists</>, targets: [TargetTypes.USER, TargetTypes.ARTIST] },
-
     { path: AppRoutes.PROFILE, element: <ProfilePage />, targets: [TargetTypes.USER] },
-    { path: AppRoutes.EDIT_PROFILE, element: <>edit profile</>, targets: [TargetTypes.USER] },
+    { path: AppRoutes.EDIT_PROFILE, element: <EditProfilePage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.TRACKS, element: <>tracks</>, targets: [TargetTypes.USER] },
+    { path: AppRoutes.ALBUMS, element: <>albums</>, targets: [TargetTypes.USER] },
+    { path: AppRoutes.PLAYLISTS, element: <>playlists</>, targets: [TargetTypes.USER] },
+    { path: AppRoutes.ARTISTS, element: <>artists</>, targets: [TargetTypes.USER] },
 
     { path: AppRoutes.ARTIST_PROFILE, element: <ArtistProfilePage />, targets: [TargetTypes.ARTIST] },
-    { path: AppRoutes.ARTIST_EDIT_PROFILE, element: <>edit artist profile</>, targets: [TargetTypes.ARTIST] },
+    { path: AppRoutes.ARTIST_EDIT_PROFILE, element: <EditArtistProfilePage />, targets: [TargetTypes.ARTIST] },
 
     { path: '*', element: <NotFoundPage />, targets: [TargetTypes.USER, TargetTypes.ARTIST, TargetTypes.UNLOGIN] },
 ];

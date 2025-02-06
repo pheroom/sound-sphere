@@ -4,6 +4,7 @@ import { Artist, ArtistSchema } from './artistSchema.ts';
 import { artistLoginByUsername } from './services/artistLoginByUsername.ts';
 import { artistRegistration } from './services/artistRegistration.ts';
 import { checkArtistAuth } from './services/checkArtistAuth.ts';
+import { updateArtistProfile } from './services/updateArtistProfile.ts';
 
 const initialState: ArtistSchema = {
     isLoading: false,
@@ -45,14 +46,14 @@ export const artistSlice = createSlice({
                 state.isLoading = false;
                 state.error = action.payload;
             })
-            .addCase(checkArtistAuth.pending, (state, action) => {
+            .addCase(updateArtistProfile.pending, (state, action) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(checkArtistAuth.fulfilled, (state, action) => {
+            .addCase(updateArtistProfile.fulfilled, (state, action) => {
                 state.isLoading = false;
             })
-            .addCase(checkArtistAuth.rejected, (state, action) => {
+            .addCase(updateArtistProfile.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

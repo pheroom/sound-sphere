@@ -1,3 +1,22 @@
 .ArtistProfilePage{
+    margin-top: 20px;
+}
 
+.actions{
+    display: flex;
+    /*align-items: flex-end;*/
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 15px;
+    /*margin-top: 15px;*/
+    flex-shrink: 0;
+}
+
+.header{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    /*flex-wrap: wrap;*/
 }

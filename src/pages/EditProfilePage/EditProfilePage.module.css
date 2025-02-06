@@ -1,0 +1,71 @@
+.EditProfilePage{
+    /*margin-top: 20px;*/
+    /*margin: 0 auto;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 50px;
+    /*width: 100%;*/
+    overflow: hidden;
+}
+
+.avatarBox{
+    /*justify-self: flex-start;*/
+    /*align-self: flex-start;*/
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+
+    p{
+        /*font-size: 18px;*/
+        font-weight: 500;
+    }
+}
+
+.EditProfileForm{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 272px;
+    position: relative;
+}
+
+.sep {
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+    align-self: stretch;
+}
+
+.input {
+    align-self: stretch;
+    margin-bottom: 12px;
+}
+
+.button, .link {
+    align-self: stretch;
+}
+
+.title {
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--theme-color);
+    /*margin-top: 16px;*/
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.error{
+    position: absolute;
+    top: calc(100% + 15px);
+    max-height: 200px;
+    font: var(--font-s);
+    color: var(--red-color);
+    overflow-y: hidden;
+    align-self: flex-start;
+}
+

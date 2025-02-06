@@ -9,6 +9,7 @@ import { Button } from '../../ui/Button/Button.tsx';
 import { counterActions } from '../../models/counter/counterSlice.ts';
 import { getAuthTarget } from '../../models/auth/selectors/getAuthTarget.ts';
 import { TargetTypes } from '../../models/auth/authSchema.ts';
+import { Loader } from '../../ui/Loader/Loader.tsx';
 
 export const MainPage = memo(() => {
     const dispatch = useAppDispatch();

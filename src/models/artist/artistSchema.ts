@@ -17,6 +17,12 @@ export interface CreateArtistDto {
     name: string
 }
 
+export interface UpdateArtistDto {
+    name?: string
+    username?: string
+    description?: string
+}
+
 export interface ArtistSchema {
     authData?: Artist
     isLoading: boolean

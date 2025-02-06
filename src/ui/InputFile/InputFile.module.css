@@ -1,0 +1,35 @@
+.Box{
+    /*display: flex;*/
+    height: 36px;
+    padding: 8px 12px;
+    line-height: 20px;
+    font-size: 13px;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    border: 1px dashed var(--border);
+    color: var(--theme-color);
+    text-overflow: ellipsis;
+    position: relative;
+    & * {
+        cursor: pointer;
+    }
+}
+
+.InputFile {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    &::-webkit-file-upload-button{
+        display: none;
+    }
+}
+
+.fullWidth {
+    width: 100%;
+}

@@ -15,9 +15,9 @@ export const checkArtistAuth = createAsyncThunk<Artist, void, ThunkConfig<string
             }
             dispatch(artistActions.setAuthData(response.data));
             return response.data;
-        } catch (e) {
+        } catch (e: any) {
             console.log(e);
-            return rejectWithValue(getFetchError(e));
+            return rejectWithValue(e);
         }
     },
 );

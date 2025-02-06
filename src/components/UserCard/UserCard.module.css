@@ -1,0 +1,65 @@
+.UserCard{
+    display: flex;
+    justify-content: flex-start;
+    /*flex-wrap: wrap;*/
+    align-items: flex-start;
+
+    &.size_m{
+        gap: 25px;
+    }
+    &.size_s{
+        align-items: center;
+        gap: 15px;
+    }
+
+}
+
+.userData{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.userName{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.userFullname{
+    font: var(--font-l);
+    font-weight: 500;
+}
+
+.userUsername{
+    color: var(--grey-color);
+    font-weight: 500;
+}
+
+.userDescription{
+    /*max-width: 70%;*/
+    /*color: var(--grey-color);*/
+    /*color: #CCCCCC;*/
+}
+
+
+.userInfo{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.fullname{
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
+}
+
+.username{
+    font-size: 13px;
+    line-height: 13px;
+    color: var(--grey-color);
+}
