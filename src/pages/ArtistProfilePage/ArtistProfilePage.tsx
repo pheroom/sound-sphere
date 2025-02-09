@@ -8,7 +8,7 @@ import { Button, ButtonTheme } from '../../ui/Button/Button.tsx';
 import { authLogout } from '../../models/auth/services/authLogout.ts';
 import { AppLink, AppLinkMode, AppLinkTheme } from '../../ui/AppLink/AppLink.tsx';
 import { getArtistAuthData } from '../../models/artist/selectors/getArtistAuthData.ts';
-import { ArtistCard } from '../../components/ArtistCard/ArtistCard.tsx';
+import { ArtistCard, ArtistCardSize } from '../../components/ArtistCard/ArtistCard.tsx';
 
 export const ArtistProfilePage = memo(() => {
     const navigate = useNavigate();
@@ -27,7 +27,7 @@ export const ArtistProfilePage = memo(() => {
     return (
         <div className={classNames(cls.ArtistProfilePage, {}, [])}>
             <div className={cls.header}>
-                <ArtistCard artist={artist} className={cls.userCard} />
+                <ArtistCard artist={artist} size={ArtistCardSize.L} className={cls.userCard} />
                 <div className={cls.actions}>
                     <Button onClick={logoutClick} theme={ButtonTheme.NEGATIVE}>Logout</Button>
                     <AppLink mode={AppLinkMode.BUTTON} theme={AppLinkTheme.POSITIVE} to={AppRoutes.ARTIST_EDIT_PROFILE}>

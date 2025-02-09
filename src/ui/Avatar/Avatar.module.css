@@ -16,6 +16,11 @@
     height: 35px;
 }
 
+.size_xs{
+    width: 50px;
+    height: 50px;
+}
+
 .size_m{
     width: 100px;
     height: 100px;

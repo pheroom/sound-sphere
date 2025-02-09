@@ -1,13 +1,12 @@
-.EditProfilePage{
+.EditArtistProfileForm {
     /*margin-top: 20px;*/
     /*margin: 0 auto;*/
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
     gap: 50px;
     /*width: 100%;*/
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .avatarBox{
@@ -25,7 +24,8 @@
     }
 }
 
-.EditProfileForm{
+
+.form{
     align-self: center;
     display: flex;
     flex-direction: column;
@@ -60,12 +60,8 @@
 }
 
 .error{
-    position: absolute;
-    top: calc(100% + 15px);
-    max-height: 200px;
     font: var(--font-s);
     color: var(--red-color);
-    overflow-y: hidden;
     align-self: flex-start;
+    margin-top: 15px;
 }
-

@@ -10,14 +10,29 @@ export enum ArtistCardSize{
     L = 'size_l',
 }
 
-interface UserCardProps {
+interface ArtistCardProps {
     className?: string,
     artist?: Artist
     size?: ArtistCardSize
 }
 
-export const ArtistCard = memo(({ className, artist, size = ArtistCardSize.M }: UserCardProps) => {
-    if (!artist) return <div>user data loading...</div>;
+export const ArtistCard = memo(({ className, artist, size = ArtistCardSize.M }: ArtistCardProps) => {
+    if (!artist) return <div>artist data loading...</div>;
+    if (size === ArtistCardSize.M) {
+        return (
+            <div className={classNames(cls.ArtistCard, {}, [className, cls[size]])}>
+                <Avatar
+                    imgSrc={artist.avatarURL}
+                    size={AvatarSize.XS}
+                    className={cls.avatarImg}
+                />
+                <div className={cls.info}>
+                    <span className={cls.name}>{artist.name}</span>
+                    <span className={cls.username}>{artist.username}</span>
+                </div>
+            </div>
+        );
+    }
     if (size === ArtistCardSize.S) {
         return (
             <div className={classNames(cls.ArtistCard, {}, [className, cls[size]])}>
@@ -26,8 +41,8 @@ export const ArtistCard = memo(({ className, artist, size = ArtistCardSize.M }: 
                     size={AvatarSize.S}
                     className={cls.avatarImg}
                 />
-                <div className={cls.userInfo}>
-                    <span className={cls.fullname}>{artist.name}</span>
+                <div className={cls.info}>
+                    <span className={cls.name}>{artist.name}</span>
                     <span className={cls.username}>{artist.username}</span>
                 </div>
             </div>
@@ -36,14 +51,14 @@ export const ArtistCard = memo(({ className, artist, size = ArtistCardSize.M }: 
     return (
         <div className={classNames(cls.ArtistCard, {}, [className, cls[size]])}>
             <Avatar imgSrc={artist.avatarURL} />
-            <div className={cls.userData}>
-                <div className={cls.userName}>
-                    <div className={cls.userFullname}>
+            <div className={cls.data}>
+                <div className={cls.nameBox}>
+                    <div className={cls.name}>
                         {artist.name}
                     </div>
-                    <div className={cls.userUsername}>{artist.username}</div>
+                    <div className={cls.username}>{artist.username}</div>
                 </div>
-                <div className={cls.userDescription}>
+                <div className={cls.description}>
                     {artist.description || <i>The description is not set</i>}
                 </div>
             </div>

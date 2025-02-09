@@ -47,6 +47,9 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             <AppLink className={cls.navLink} activeClassName={cls.activeNavLink} navLink to={AppRoutes.PLAYLISTS}>
                 Playlists
             </AppLink>
+            <AppLink className={cls.navLink} activeClassName={cls.activeNavLink} navLink to={AppRoutes.ARTISTS}>
+                Artists
+            </AppLink>
             <Link to={AppRoutes.PROFILE} className={cls.profileLink}>
                 <UserCard user={user} size={UserCardSize.S} />
             </Link>

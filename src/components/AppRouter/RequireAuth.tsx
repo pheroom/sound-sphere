@@ -9,10 +9,10 @@ export const RequireAuth = ({ children, authTargets }: { children: JSX.Element, 
     if (!authTargets.includes(authTarget)) {
         return (
             <div>
+                <br />
                 <div>you don`t have perm to visit this page</div>
                 <br />
-                <br />
-                <AppLink mode={AppLinkMode.BUTTON} to={AppRoutes.MAIN}>Go to main page</AppLink>
+                <AppLink mode={AppLinkMode.BUTTON} to={AppRoutes.MAIN}>To main page</AppLink>
             </div>
         );
     }

@@ -18,6 +18,21 @@ interface UserCardProps {
 
 export const UserCard = memo(({ className, user, size = UserCardSize.M }: UserCardProps) => {
     if (!user) return <div>user data loading...</div>;
+    if (size === UserCardSize.M) {
+        return (
+            <div className={classNames(cls.UserCard, {}, [className, cls[size]])}>
+                <Avatar
+                    imgSrc={user.avatarURL}
+                    size={AvatarSize.S}
+                    className={cls.avatarImg}
+                />
+                <div className={cls.userInfo}>
+                    <span className={cls.fullname}>{`${user.firstname} ${user.lastname || ''}`}</span>
+                    <span className={cls.username}>{user.username}</span>
+                </div>
+            </div>
+        );
+    }
     if (size === UserCardSize.S) {
         return (
             <div className={classNames(cls.UserCard, {}, [className, cls[size]])}>
@@ -36,14 +51,14 @@ export const UserCard = memo(({ className, user, size = UserCardSize.M }: UserCa
     return (
         <div className={classNames(cls.UserCard, {}, [className, cls[size]])}>
             <Avatar imgSrc={user.avatarURL} />
-            <div className={cls.userData}>
-                <div className={cls.userName}>
-                    <div className={cls.userFullname}>
+            <div className={cls.data}>
+                <div className={cls.nameBox}>
+                    <div className={cls.fullname}>
                         {`${user.firstname} ${user.lastname || ''}`}
                     </div>
-                    <div className={cls.userUsername}>{user.username}</div>
+                    <div className={cls.username}>{user.username}</div>
                 </div>
-                <div className={cls.userDescription}>
+                <div className={cls.description}>
                     {user.description || <i>The description is not set</i>}
                 </div>
             </div>

@@ -5,6 +5,7 @@ import avatarPlaceholder from '../../assets/avatarPlaceholder.jpg';
 
 export enum AvatarSize{
     S = 'size_s',
+    XS = 'size_xs',
     M = 'size_m',
     L = 'size_l',
 }

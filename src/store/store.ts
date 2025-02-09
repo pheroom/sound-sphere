@@ -6,13 +6,19 @@ import { counterReducer } from '../models/counter/counterSlice.ts';
 import { userReducer } from '../models/user/userSlice.ts';
 import { authReducer } from '../models/auth/authSlice.ts';
 import { artistReducer } from '../models/artist/artistSlice.ts';
+import { artistsProfileReducer } from '../models/artistsProfile/artistsProfileSlice.ts';
+import { usersProfileReducer } from '../models/userProfile/usersProfileSlice.ts';
+import { artistsListReducer } from '../models/artistsList/artistsListSlice.ts';
 
 export const store = configureStore({
     reducer: {
         counter: counterReducer,
-        user: userReducer,
-        artist: artistReducer,
         auth: authReducer,
+        user: userReducer,
+        usersProfile: usersProfileReducer,
+        artist: artistReducer,
+        artistsList: artistsListReducer,
+        artistsProfile: artistsProfileReducer,
     },
     devTools: import.meta.env.DEV,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({

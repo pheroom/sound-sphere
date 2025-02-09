@@ -1,78 +1,72 @@
 import { memo, useEffect, useState } from 'react';
-import cls from './EditProfilePage.module.css';
-import { classNames } from '../../utils/classNames.ts';
-import { useAppDispatch, useAppSelector } from '../../store/store.ts';
-import { getUserAuthData } from '../../models/user/selectors/getUserAuthData.ts';
-import { Input } from '../../ui/Input/Input.tsx';
-import { Button, ButtonSize, ButtonTheme } from '../../ui/Button/Button.tsx';
-import { getUserIsLoading } from '../../models/user/selectors/getUserIsLoading.ts';
-import { getUserError } from '../../models/user/selectors/getUserError.ts';
-import { Avatar, AvatarSize } from '../../ui/Avatar/Avatar.tsx';
+import cls from './EditArtistProfileForm.module.css';
 import { InputFile } from '../../ui/InputFile/InputFile.tsx';
+import { Input } from '../../ui/Input/Input.tsx';
+import { Textarea } from '../../ui/Textarea/Textarea.tsx';
+import { Button, ButtonSize, ButtonTheme } from '../../ui/Button/Button.tsx';
 import { AppLink, AppLinkMode, AppLinkSize } from '../../ui/AppLink/AppLink.tsx';
 import { AppRoutes } from '../../routeConfig.tsx';
-import { Textarea } from '../../ui/Textarea/Textarea.tsx';
-import { updateUserProfile } from '../../models/user/services/updateUserProfile.ts';
-import { UpdateUserDto } from '../../models/user/userSchema.ts';
+import { Avatar, AvatarSize } from '../../ui/Avatar/Avatar.tsx';
+import { useAppDispatch, useAppSelector } from '../../store/store.ts';
+import { getArtistAuthData } from '../../models/artist/selectors/getArtistAuthData.ts';
+import { getArtistIsLoading } from '../../models/artist/selectors/getArtistIsLoading.ts';
+import { getArtistError } from '../../models/artist/selectors/getArtistError.ts';
+import { UpdateArtistDto } from '../../models/artist/artistSchema.ts';
+import { updateArtistProfile } from '../../models/artist/services/updateArtistProfile.ts';
+import { classNames } from '../../utils/classNames.ts';
 
-export const EditProfilePage = memo(() => {
+interface EditArtistProfileFormProps {
+    className?: string
+}
+
+export const EditArtistProfileForm = memo(({ className }: EditArtistProfileFormProps) => {
     const dispatch = useAppDispatch();
 
-    const user = useAppSelector(getUserAuthData);
-    const isLoading = useAppSelector(getUserIsLoading);
-    const error = useAppSelector(getUserError);
+    const artist = useAppSelector(getArtistAuthData);
+    const isLoading = useAppSelector(getArtistIsLoading);
+    const error = useAppSelector(getArtistError);
 
-    const [firstname, setFirstname] = useState('');
-    const [lastname, setLastname] = useState('');
+    const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const [description, setDescription] = useState('');
     const [avatar, setAvatar] = useState<File>();
 
     useEffect(() => {
-        if (user) {
-            setFirstname(user.firstname);
-            setLastname(user.lastname || '');
-            setUsername(user.username);
-            setDescription(user.description || '');
+        if (artist) {
+            setName(artist.name);
+            setUsername(artist.username);
+            setDescription(artist.description || '');
         }
-    }, [user]);
+    }, [artist]);
 
     const confirmClick = async () => {
-        if (!user) return;
-        const updates: UpdateUserDto = { username, firstname, lastname, description };
+        if (!artist) return;
+        const updates: UpdateArtistDto = { username, name, description };
         let hasChanges = !!avatar;
         const formData = new FormData();
         if (avatar) formData.append('image', avatar, avatar.name);
         Object.entries(updates).forEach(([key, value]) => {
             // @ts-ignore
-            if (user[key] !== updates[key]) {
+            if (artist[key] !== updates[key]) {
                 // @ts-ignore
                 formData.append(key, updates[key]);
                 hasChanges = true;
             }
         });
-        if (hasChanges) dispatch(updateUserProfile(formData));
+        if (hasChanges) dispatch(updateArtistProfile(formData));
     };
 
-    if (!user) return <div>user data loading...</div>;
+    if (!artist) return <div>artist data loading...</div>;
     return (
-        <div className={classNames(cls.EditProfilePage, {}, [])}>
-            <div className={cls.EditProfileForm}>
+        <div className={classNames(cls.EditArtistProfileForm, {}, [className])}>
+            <div className={cls.form}>
                 <p className={cls.title}>Edit Profile</p>
                 <InputFile className={cls.input} text="Select new avatar image" onChange={(e) => setAvatar(e?.[0])} />
                 <Input
                     fullWidth
-                    placeholder="Firstname"
-                    value={firstname}
-                    onChange={(value) => setFirstname(value)}
-                    type="text"
-                    classNameBox={cls.input}
-                />
-                <Input
-                    fullWidth
-                    placeholder="Lastname"
-                    value={lastname}
-                    onChange={(value) => setLastname(value)}
+                    placeholder="Name"
+                    value={name}
+                    onChange={(value) => setName(value)}
                     type="text"
                     classNameBox={cls.input}
                 />
@@ -105,7 +99,7 @@ export const EditProfilePage = memo(() => {
                     className={cls.link}
                     size={AppLinkSize.L}
                     mode={AppLinkMode.BUTTON}
-                    to={AppRoutes.PROFILE}
+                    to={AppRoutes.ARTIST_PROFILE}
                 >
                     To profile page
                 </AppLink>

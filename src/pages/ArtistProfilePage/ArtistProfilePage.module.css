@@ -1,5 +1,5 @@
 .ArtistProfilePage{
-    margin-top: 20px;
+    margin-top: var(--page-top-margin);
 }
 
 .actions{
