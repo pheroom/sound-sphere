@@ -3,8 +3,10 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { Artist, ArtistSchema } from './artistSchema.ts';
 import { artistLoginByUsername } from './services/artistLoginByUsername.ts';
 import { artistRegistration } from './services/artistRegistration.ts';
-import { checkArtistAuth } from './services/checkArtistAuth.ts';
 import { updateArtistProfile } from './services/updateArtistProfile.ts';
+import { artistCreateAlbum } from './services/artistCreateAlbum.ts';
+import { Album } from '../albumsList/albumsListSchema.ts';
+import { fetchCreatedAlbumsList } from './services/fetchCreatedAlbumsList.ts';
 
 const initialState: ArtistSchema = {
     isLoading: false,
@@ -20,6 +22,9 @@ export const artistSlice = createSlice({
         },
         logout: (state) => {
             state.authData = undefined;
+        },
+        setCreatedAlbums: (state, action: PayloadAction<Album[]>) => {
+            state.createdAlbums = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -54,6 +59,28 @@ export const artistSlice = createSlice({
                 state.isLoading = false;
             })
             .addCase(updateArtistProfile.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(artistCreateAlbum.pending, (state, action) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(artistCreateAlbum.fulfilled, (state, action) => {
+                state.isLoading = false;
+            })
+            .addCase(artistCreateAlbum.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(fetchCreatedAlbumsList.pending, (state, action) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(fetchCreatedAlbumsList.fulfilled, (state, action) => {
+                state.isLoading = false;
+            })
+            .addCase(fetchCreatedAlbumsList.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

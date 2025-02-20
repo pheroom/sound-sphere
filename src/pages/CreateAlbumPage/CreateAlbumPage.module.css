@@ -1,29 +1,10 @@
-.EditArtistProfileForm {
-    /*margin-top: 20px;*/
-    /*margin: 0 auto;*/
+.CreateAlbumPage {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 50px;
-    /*width: 100%;*/
-    /*overflow: hidden;*/
+    gap: 35px;
+    height: 100%;
 }
-
-.avatarBox{
-    /*justify-self: flex-start;*/
-    /*align-self: flex-start;*/
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-
-    p{
-        /*font-size: 18px;*/
-        font-weight: 500;
-    }
-}
-
 
 .form{
     align-self: center;
@@ -64,4 +45,19 @@
     color: var(--red-color);
     align-self: flex-start;
     margin-top: 15px;
+}
+
+.pictureBox{
+    /*justify-self: flex-start;*/
+    /*align-self: flex-start;*/
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+
+    p{
+        /*font-size: 18px;*/
+        font-weight: 500;
+    }
 }

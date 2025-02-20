@@ -9,12 +9,10 @@
     border: 1px solid var(--border);
     color: var(--theme-color);
     text-overflow: ellipsis;
+    width: 100%;
 
     &:focus {
         border: 1px solid var(--blue-color);
     }
 }
 
-.fullWidth {
-    width: 100%;
-}

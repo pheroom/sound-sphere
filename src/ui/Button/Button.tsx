@@ -8,6 +8,7 @@ export enum ButtonMode{
     OUTLINE = 'outline',
     TERTIARY = 'tertiary',
     LINK = 'link',
+    // ICON = 'icon',
 }
 
 export enum ButtonTheme{
@@ -22,18 +23,20 @@ export enum ButtonSize{
     L = 'size_l',
 }
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     theme?: ButtonTheme
     size?: ButtonSize
     mode?: ButtonMode
+    isIcon?: boolean
 }
 
 export const Button = memo((
     { className, children, size = ButtonSize.M, mode = ButtonMode.PRIMARY,
-        theme = ButtonTheme.ACCENT, disabled, ...args }: ButtonProps,
+        theme = ButtonTheme.ACCENT, disabled, isIcon, ...args }: ButtonProps,
 ) => {
     const mods: Mods = {
         [cls.disabled]: disabled,
+        [cls.icon]: isIcon,
     };
 
     return (

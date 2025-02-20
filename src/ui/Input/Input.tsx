@@ -7,20 +7,18 @@ export enum InputSizeY{
     COMPACT = 'compact',
 }
 
-interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>{
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>{
     className?: string
     value?: string
     onChange?: (value: string) => void
     classNameBox?: string
-    fullWidth?: boolean
     sizeY?: InputSizeY
+    fullWidth?: boolean
 }
 
 export const Input = memo(({
-    className, value, onChange, classNameBox, fullWidth = false, type = 'text', sizeY = InputSizeY.REGULAR, ...args
+    className, value, onChange, classNameBox, type = 'text', sizeY = InputSizeY.REGULAR, ...args
 }: InputProps) => {
-    const mods: Mods = { [cls.fullWidth]: fullWidth };
-
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
     };
@@ -31,7 +29,7 @@ export const Input = memo(({
                 onChange={onChangeHandler}
                 value={value}
                 type={type}
-                className={classNames(cls.Input, mods, [className, cls[sizeY]])}
+                className={classNames(cls.Input, {}, [className, cls[sizeY]])}
                 {...args}
             />
         </div>

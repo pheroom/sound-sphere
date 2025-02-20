@@ -67,7 +67,7 @@ export const EditUserProfileForm = memo(({ className }: EditUserProfileFormProps
                     className={cls.input}
                     text="Select new avatar image"
                     accept="image/*"
-                    onChange={(e) => setAvatar(e?.[0])}
+                    onChange={(files) => setAvatar(files?.[0])}
                 />
                 <Input
                     fullWidth

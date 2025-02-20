@@ -2,6 +2,7 @@ import { memo } from 'react';
 import cls from './Avatar.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import avatarPlaceholder from '../../assets/avatarPlaceholder.jpg';
+import { getFullFilePath } from '../../utils/getFullFilePath.ts';
 
 export enum AvatarSize{
     S = 'size_s',
@@ -18,15 +19,9 @@ interface AvatarProps {
 }
 
 export const Avatar = memo(({ className, size = AvatarSize.M, imgSrc, noApiUrl = false }: AvatarProps) => {
-    const getFullFilePath = (name?: string) => {
-        if (noApiUrl) return name;
-        if (!name) return '';
-        return import.meta.env.VITE_STATIC_URL + name;
-    };
-
     return (
         <div className={classNames(cls.Avatar, {}, [className, cls[size]])}>
-            <img src={getFullFilePath(imgSrc) || avatarPlaceholder} alt="avatarImg" />
+            <img src={getFullFilePath(imgSrc, noApiUrl) || avatarPlaceholder} alt="avatarImg" />
         </div>
     );
 });

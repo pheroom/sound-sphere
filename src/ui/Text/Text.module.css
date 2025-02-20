@@ -1,0 +1,22 @@
+.Text {
+    /*color: var(--secondary-color);*/
+    /*font: var(--font-m);*/
+}
+
+.text{
+
+}
+
+.title {
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--theme-color);
+    /*margin-bottom: 20px;*/
+    font-weight: 500;
+}
+
+.error {
+    /*font: var(--font-s);*/
+    /*color: var(--red-dark);*/
+    color: var(--red-color);
+}

@@ -57,6 +57,27 @@
 
 .tertiary {
     background: none;
+    color: var(--primary-color);
+
+    &:hover {
+        background: #131313FF;
+    }
+}
+
+.icon{
+    min-width: auto;
+    padding: 5px;
+    span{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        svg{
+            color: var(--primary-color);
+            /*width: 22px;*/
+            /*height: 22px;*/
+        }
+    }
 }
 
 .size_s {

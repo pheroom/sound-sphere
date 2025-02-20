@@ -23,7 +23,7 @@ export enum AppLinkSize{
     L = 'size_l',
 }
 
-interface AppLinkProps extends LinkProps {
+export interface AppLinkProps extends LinkProps {
     className?: string
     theme?: AppLinkTheme
     mode?: AppLinkMode

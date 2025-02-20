@@ -9,11 +9,14 @@ import { getAuthInited } from './models/auth/selectors/getAuthInited.ts';
 import { checkAuthTarget } from './models/auth/services/checkAuthTarget.ts';
 import { PageLoader } from './components/PageLoader/PageLoader.tsx';
 import { getAuthIsLoading } from './models/auth/selectors/getAuthIsLoading.ts';
+import { getPlayerData } from './models/player/selectors/getPlayerData.ts';
+import { playerActions } from './models/player/playerSlice.ts';
 
 function App() {
     const dispatch = useAppDispatch();
     const isAuthInited = useAppSelector(getAuthInited);
     const authIsLoading = useAppSelector(getAuthIsLoading);
+    const { isActive } = useAppSelector(getPlayerData);
 
     useEffect(() => {
         if (!isAuthInited) {
@@ -25,7 +28,7 @@ function App() {
         <div className={classNames('app', {}, [])}>
             <Suspense fallback="">
                 <Navbar />
-                <div className="page-layout container">
+                <div className={classNames('page-layout container', { 'page-layout--offseted': isActive })}>
                     {isAuthInited && <AppRouter />}
                 </div>
                 <Player />

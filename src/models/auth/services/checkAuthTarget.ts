@@ -20,7 +20,6 @@ export const checkAuthTarget = createAsyncThunk<void, void, ThunkConfig<string>>
                     const user = await dispatch(checkUserAuth()).unwrap();
                     dispatch(authActions.setAuthTarget(TargetTypes.USER));
                 } catch (e: any) {
-                    console.log('user error: ', e);
                     if (e instanceof AxiosError && e.status === 401) {
                         console.log('clean token');
                         localStorage.removeItem(USER_LOCALSTORAGE_KEY);
@@ -33,7 +32,6 @@ export const checkAuthTarget = createAsyncThunk<void, void, ThunkConfig<string>>
                     const artist = await dispatch(checkArtistAuth()).unwrap();
                     dispatch(authActions.setAuthTarget(TargetTypes.ARTIST));
                 } catch (e: any) {
-                    console.log('artist error: ', e);
                     if (e instanceof AxiosError && e.status === 401) {
                         console.log('clean token');
                         localStorage.removeItem(ARTIST_LOCALSTORAGE_KEY);

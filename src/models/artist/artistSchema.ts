@@ -1,3 +1,5 @@
+import { Album } from '../albumsList/albumsListSchema.ts';
+
 export interface Artist {
     id: number
     username: string
@@ -24,6 +26,7 @@ export interface UpdateArtistDto {
 }
 
 export interface ArtistSchema {
+    createdAlbums?: Album[]
     authData?: Artist
     isLoading: boolean
     error?: string

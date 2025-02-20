@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { Link } from 'react-router';
 import cls from './MainPage.module.css';
 import { classNames } from '../../utils/classNames.ts';
@@ -47,6 +47,7 @@ export const MainPage = memo(() => {
             <Button onClick={() => dispatch(counterActions.increment())}>+</Button>
             <br />
             <Button onClick={() => dispatch(counterActions.decrement())}>-</Button>
+            <br />
 
         </div>
     );

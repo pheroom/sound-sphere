@@ -2,7 +2,7 @@ import React, { memo, TextareaHTMLAttributes } from 'react';
 import cls from './Textarea.module.css';
 import { classNames, Mods } from '../../utils/classNames.ts';
 
-interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'>{
+export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'value' | 'onChange'>{
     className?: string
     value?: string
     onChange?: (value: string) => void
@@ -10,7 +10,7 @@ interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>
 }
 
 export const Textarea = memo(({
-    className, value, onChange, classNameBox, ...args
+    className, value, onChange, classNameBox, autoComplete, rows, ...args
 }: TextareaProps) => {
     const mods: Mods = { };
 
@@ -24,6 +24,8 @@ export const Textarea = memo(({
                 onChange={onChangeHandler}
                 value={value}
                 className={classNames(cls.Textarea, mods, [className])}
+                autoComplete={autoComplete || 'off'}
+                rows={rows || 3}
                 {...args}
             />
         </div>

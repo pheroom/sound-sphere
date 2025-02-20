@@ -12,6 +12,10 @@ import { EditArtistProfilePage } from './pages/EditArtistProfilePage/EditArtistP
 import { ArtistsProfilePage } from './pages/ArtistsProfilePage/ArtistsProfilePage.tsx';
 import { UsersProfilePage } from './pages/UsersProfilePage/UsersProfilePage.tsx';
 import { ArtistsListPage } from './pages/ArtistsListPage/ArtistsListPage.tsx';
+import { CreateAlbumPage } from './pages/CreateAlbumPage/CreateAlbumPage.tsx';
+import { EditAlbumPage } from './pages/EditAlbumPage/EditAlbumPage.tsx';
+import { CreateTrackPage } from './pages/CreateTrackPage/CreateTrackPage.tsx';
+import { EditTrackPage } from './pages/EditTrackPage/EditTrackPage.tsx';
 
 export enum AppRoutes{
     MAIN = '/',
@@ -19,6 +23,9 @@ export enum AppRoutes{
     ARTIST_SIGN_ON = '/artist-sign-on',
     SIGN_IN = '/sign-in',
     SIGN_ON = '/sign-on',
+    PROFILE = '/profile',
+    EDIT_PROFILE = '/edit-profile',
+    USERS_PROFILE = '/users/:id',
     TRACKS = '/tracks',
     ALBUMS = '/albums',
     PLAYLISTS = '/playlists',
@@ -26,9 +33,13 @@ export enum AppRoutes{
     ARTISTS_PROFILE = '/artists/:id',
     ARTIST_PROFILE = '/artist-profile',
     ARTIST_EDIT_PROFILE = '/artist-edit-profile',
-    PROFILE = '/profile',
-    EDIT_PROFILE = '/edit-profile',
-    USERS_PROFILE = '/users/:id',
+    ARTIST_CREATE_ALBUM = '/artist-create-album',
+    ARTIST_EDIT_ALBUM = '/artist-edit-album',
+    ARTIST_EDIT_ALBUM_PATH = '/artist-edit-album/:id',
+    ARTIST_CREATE_TRACK = '/artist-create-track',
+    ARTIST_CREATE_TRACK_PATH = '/artist-create-track/:albumId',
+    ARTIST_EDIT_TRACK = '/artist-edit-track',
+    ARTIST_EDIT_TRACK_PATH = '/artist-edit-track/:id',
 }
 
 export type appRouteType = {path: AppRoutes | '*', element: JSX.Element, targets: TargetTypes[]};
@@ -45,12 +56,17 @@ export const routeConfig: appRouteType[] = [
     { path: AppRoutes.TRACKS, element: <>tracks</>, targets: [TargetTypes.USER] },
     { path: AppRoutes.ALBUMS, element: <>albums</>, targets: [TargetTypes.USER] },
     { path: AppRoutes.PLAYLISTS, element: <>playlists</>, targets: [TargetTypes.USER] },
-    { path: AppRoutes.ARTISTS, element: <ArtistsListPage />, targets: [TargetTypes.USER] },
-    { path: AppRoutes.ARTISTS_PROFILE, element: <ArtistsProfilePage />, targets: [TargetTypes.USER] },
     { path: AppRoutes.USERS_PROFILE, element: <UsersProfilePage />, targets: [TargetTypes.USER] },
 
     { path: AppRoutes.ARTIST_PROFILE, element: <ArtistProfilePage />, targets: [TargetTypes.ARTIST] },
     { path: AppRoutes.ARTIST_EDIT_PROFILE, element: <EditArtistProfilePage />, targets: [TargetTypes.ARTIST] },
+    { path: AppRoutes.ARTIST_CREATE_ALBUM, element: <CreateAlbumPage />, targets: [TargetTypes.ARTIST] },
+    { path: AppRoutes.ARTIST_EDIT_ALBUM_PATH, element: <EditAlbumPage />, targets: [TargetTypes.ARTIST] },
+    { path: AppRoutes.ARTIST_CREATE_TRACK_PATH, element: <CreateTrackPage />, targets: [TargetTypes.ARTIST] },
+    { path: AppRoutes.ARTIST_EDIT_TRACK_PATH, element: <EditTrackPage />, targets: [TargetTypes.ARTIST] },
+
+    { path: AppRoutes.ARTISTS, element: <ArtistsListPage />, targets: [TargetTypes.USER, TargetTypes.ARTIST] },
+    { path: AppRoutes.ARTISTS_PROFILE, element: <ArtistsProfilePage />, targets: [TargetTypes.USER, TargetTypes.ARTIST] },
 
     { path: '*', element: <NotFoundPage />, targets: [TargetTypes.USER, TargetTypes.ARTIST, TargetTypes.UNLOGIN] },
 ];

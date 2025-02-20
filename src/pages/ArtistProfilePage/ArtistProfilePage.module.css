@@ -19,4 +19,9 @@
     justify-content: space-between;
     gap: 30px;
     /*flex-wrap: wrap;*/
+    margin-bottom: 20px;
+}
+
+.title{
+    margin-bottom: 10px;
 }

@@ -5,18 +5,43 @@ html,
 body {
     height: 100%;
     overflow-x: hidden;
+
 }
 
 body {
     font: var(--font-m);
     color: var(--primary-color);
-    /*overflow-y: scroll;*/
+    background: var(--bg-color);
+    /*& *::selection {*/
+    /*    color: white;*/
+    /*    background: red;*/
+    /*}*/
+    /*& *::-moz-selection {*/
+    /*    color: blue;*/
+    /*    background: green;*/
+    /*}*/
+
+    &::-webkit-scrollbar-track{
+        background-color: var(--bg-color-content);
+    }
+    &::-webkit-scrollbar{
+        width: 8px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: var(--secondary-bg);
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb:hover{
+        background: var(--secondary-bg-hover);
+    }
 }
 
 .app {
-    background: var(--bg-color);
     min-height: 100vh;
-    flex-direction: column;
+    background: var(--bg-color);
+    width: 100vw;
+    /*display: flex;*/
+    /*flex-direction: column;*/
     position: relative;
     overflow-x: hidden;
 }
@@ -31,6 +56,12 @@ body {
 .page-layout {
     display: flex;
     min-height: calc(100vh - var(--navbar-height));
+    /*& > div{*/
+    /*    flex-grow: 1;*/
+    /*}*/
+    &.page-layout--offseted{
+        /*margin-bottom: 85px;*/
+    }
 }
 
 .page-wrapper {

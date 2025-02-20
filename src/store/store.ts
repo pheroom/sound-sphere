@@ -9,6 +9,8 @@ import { artistReducer } from '../models/artist/artistSlice.ts';
 import { artistsProfileReducer } from '../models/artistsProfile/artistsProfileSlice.ts';
 import { usersProfileReducer } from '../models/userProfile/usersProfileSlice.ts';
 import { artistsListReducer } from '../models/artistsList/artistsListSlice.ts';
+import { albumsListReducer } from '../models/albumsList/albumsListSlice.ts';
+import { playerReducer } from '../models/player/playerSlice.ts';
 
 export const store = configureStore({
     reducer: {
@@ -19,6 +21,8 @@ export const store = configureStore({
         artist: artistReducer,
         artistsList: artistsListReducer,
         artistsProfile: artistsProfileReducer,
+        albumsList: albumsListReducer,
+        player: playerReducer,
     },
     devTools: import.meta.env.DEV,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({

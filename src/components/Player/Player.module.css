@@ -1,5 +1,5 @@
 .Player {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 15px;
 }
 
 .fullInfoBlock{
@@ -32,23 +32,29 @@
     justify-content: center;
     margin-top: -2px;
     gap: 4px;
+    width: 100px;
 }
 
 .artists{
-    color: #798795;
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 13px;
-    cursor: pointer;
-    &:hover{
-        text-decoration: underline;
+    a{
+        color: #798795;
+        font-weight: 500;
+        font-size: 13px;
+        /*line-height: 13px;*/
+        /*height: 13px;*/
     }
+    margin-top: -5px;
+    max-height: 18px;
 }
 
 .name{
+    max-width: 100%;
     font-size: 14px;
     line-height: 14px;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cover{
@@ -59,8 +65,11 @@
     /*width: 150px;*/
 }
 
-.icon{
-    color: var(--blue-color);
+.playActions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
 }
 
 .iconButton{
@@ -73,9 +82,16 @@
     align-items: center;
     justify-content: center;
 
-    .icon{
+    .primaryIcon{
         color: var(--primary-color);
     }
+}
+
+.icon{
+    color: var(--blue-color);
+}
+.iconDisabled{
+    color: var(--grey-color);
 }
 
 .timeInfo{

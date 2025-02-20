@@ -1,4 +1,14 @@
 .Box{
+}
+
+.fileName{
+    display: block;
+    margin-top: 5px;
+    padding-left: 12px;
+    font-size: 14px;
+}
+
+.inputBox{
     /*display: flex;*/
     height: 36px;
     padding: 8px 12px;
@@ -28,8 +38,4 @@
     &::-webkit-file-upload-button{
         display: none;
     }
-}
-
-.fullWidth {
-    width: 100%;
 }

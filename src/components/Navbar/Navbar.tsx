@@ -57,7 +57,10 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     );
 
     const contentForArtist = (
-        <nav className={cls.mainLinks}>
+        <nav className={cls.links}>
+            <AppLink className={cls.commonLink} mode={AppLinkMode.LINK} to={AppRoutes.ARTIST_CREATE_ALBUM}>
+                Add Album
+            </AppLink>
             <Link to={AppRoutes.ARTIST_PROFILE} className={cls.profileLink}>
                 <ArtistCard artist={artist} size={ArtistCardSize.S} />
             </Link>

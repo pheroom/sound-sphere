@@ -1,0 +1,52 @@
+.TracksList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.box{
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+    gap: 10px;
+    border-radius: var(--border-radius);
+    transition: .2s;
+    width: 100%;
+    cursor: pointer;
+    padding: 8px 15px;
+
+    &:hover{
+        background: #0E0E0EFF;
+    }
+
+    &.activeTrack {
+        background: #131313FF;
+    }
+}
+
+.actions{
+    /*justify-content: space-between;*/
+    margin: 0 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    /*gap: 3px;*/
+}
+
+.title{
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.artistsLinks{
+    line-height: 20px;
+}

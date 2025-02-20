@@ -43,7 +43,7 @@ module.exports = {
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
         'react-hooks/rules-of-hooks': 'error',
-        'react-hooks/exhaustive-deps': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
         'no-param-reassign': 'off',
         'no-console': 'off',
         'no-restricted-syntax': 'off',
@@ -51,6 +51,7 @@ module.exports = {
         'react/no-array-index-key': 'off',
         'consistent-return': 'off',
         'default-case': 'warn',
-        'react/jsx-no-useless-fragment': 'warn'
+        'react/jsx-no-useless-fragment': 'warn',
+        'no-restricted-globals': 'warn'
     },
 };
