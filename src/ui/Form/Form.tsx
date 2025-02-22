@@ -12,12 +12,13 @@ import { Text, TextMode } from '../Text/Text.tsx';
 interface FormProps extends AllHTMLAttributes<HTMLDivElement> {
     className?: string
     title?: string
+    alignTitle?: string
 }
 
-export const Form = memo(({ className, title, children, ...args }: FormProps) => {
+export const Form = memo(({ className, title, alignTitle, children, ...args }: FormProps) => {
     return (
         <div className={classNames(cls.Form, {}, [className])} {...args}>
-            <Text className={cls.title} mode={TextMode.TITLE}>{title}</Text>
+            <Text style={{ alignSelf: alignTitle }} className={cls.title} mode={TextMode.TITLE}>{title}</Text>
             {children}
         </div>
     );
@@ -37,13 +38,16 @@ export const FormButton = memo(({ className, children, ...args }: ButtonProps) =
 });
 
 interface FormInputProps extends InputProps {
-    setData: React.Dispatch<React.SetStateAction<Object>>
+    setData: React.Dispatch<React.SetStateAction<any>>
     dataName: string
 }
 
 export const FormInput = memo(({ classNameBox, placeholder, dataName, setData, ...args }: FormInputProps) => {
     const onChangeHandler = (value: string) => {
-        setData((prev) => ({ ...prev, [dataName]: value }));
+        setData((prev: any) => {
+            if (prev instanceof Object) return { ...prev, [dataName]: value };
+            return value;
+        });
     };
 
     return (

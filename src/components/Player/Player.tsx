@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useRef } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import cls from './Player.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import { Progress } from '../../ui/Progress/Progress.tsx';
@@ -10,6 +10,8 @@ import PlayIcon from '../../assets/icons/play.svg?react';
 import PauseIcon from '../../assets/icons/pause.svg?react';
 import RepeatIcon from '../../assets/icons/repeat.svg?react';
 import RepeatOneIcon from '../../assets/icons/repeat1.svg?react';
+import AddIcon from '../../assets/icons/add.svg?react';
+import AddedIcon from '../../assets/icons/added.svg?react';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
 import { getPlayerData } from '../../models/player/selectors/getPlayerData.ts';
 import { getPlayerTrack } from '../../models/player/selectors/getPlayerTrack.ts';
@@ -28,6 +30,8 @@ interface PlayerProps {
 
 export const Player = memo(({ className }: PlayerProps) => {
     const audioRef = useRef<HTMLAudioElement>(new Audio());
+
+    const [isAdded, setIsAdded] = useState(false);
 
     const dispatch = useAppDispatch();
     const { isActive, currentTime, repeatMode, isMuted, duration, volume, isPlaying } = useAppSelector(getPlayerData);
@@ -175,6 +179,9 @@ export const Player = memo(({ className }: PlayerProps) => {
                                 />
                             )}
                     </button>
+                    {/* <button className={cls.iconButton} onClick={() => setIsAdded((prev) => !prev)}> */}
+                    {/*    {isAdded ? <AddedIcon className={cls.icon} /> : <AddIcon className={cls.primaryIcon} />} */}
+                    {/* </button> */}
                 </div>
                 <Progress
                     className={cls.timeProgress}

@@ -10,6 +10,14 @@ export default class AlbumService {
         return res.data;
     }
 
+    static async createAlbum(data: FormData): Promise<Album> {
+        const res = await $api.post<Album>('/albums', data);
+        if (!res.data) {
+            throw new Error();
+        }
+        return res.data;
+    }
+
     static async updateAlbum(id: number, updates: FormData): Promise<Album> {
         const res = await $api.patch<Album>(`/albums/${id}`, updates);
         if (!res.data) {

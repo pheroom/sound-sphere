@@ -9,6 +9,7 @@ import { getUsersProfileData } from '../../models/userProfile/selectors/getUsers
 import { getUsersProfileError } from '../../models/userProfile/selectors/getUsersProfileError.ts';
 import { UserCard, UserCardSize } from '../../components/UserCard/UserCard.tsx';
 import { fetchUsersProfile } from '../../models/userProfile/services/fetchUsersProfile.ts';
+import { ErrorPage } from '../ErrorPage/ErrorPage.tsx';
 
 export const UsersProfilePage = memo(() => {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ export const UsersProfilePage = memo(() => {
         }
     }, [id, dispatch]);
 
-    if (usersProfileError) return <div>{usersProfileError}</div>;
+    if (usersProfileError) return <ErrorPage text={usersProfileError} />;
     if (!user || isLoading) return <PageLoader />;
     return (
         <div className={classNames(cls.UsersProfilePage, {}, [])}>

@@ -77,7 +77,7 @@ export const EditAlbumPage = memo(({ className }: EditAlbumPageProps) => {
     return (
         <div className={classNames(cls.EditAlbumPage, {}, [className])}>
             <div className={cls.editFormBox}>
-                <Form title="Edit Album">
+                <Form title="Edit Album" alignTitle="flex-start">
                     <FormInput
                         placeholder="Name"
                         value={updatesData.name}

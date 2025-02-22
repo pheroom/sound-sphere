@@ -6,6 +6,8 @@ import { classNames } from '../../utils/classNames.ts';
 import { useFetching } from '../../utils/useFetching.ts';
 import TrackService from '../../services/TrackService.ts';
 import { Track } from '../../models/tracsList/tracksListSchema.ts';
+import { ErrorPage } from '../ErrorPage/ErrorPage.tsx';
+import { PageLoader } from '../../components/PageLoader/PageLoader.tsx';
 
 interface EditTrackPageProps {
     className?: string
@@ -53,6 +55,8 @@ export const EditTrackPage = memo(({ className }: EditTrackPageProps) => {
         }
     };
 
+    if (trackError) return <ErrorPage text={trackError} />;
+    if (!trackData) return <PageLoader />;
     return (
         <div className={classNames(cls.EditTrackPage, {}, [className])}>
             <Form title="Edit Track">

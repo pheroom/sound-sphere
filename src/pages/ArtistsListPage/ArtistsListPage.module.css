@@ -1,5 +1,5 @@
 .ArtistsListPage {
-    margin-top: var(--page-top-margin);
+    margin: var(--page-margin) 0;
     display: flex;
     flex-direction: column;
     gap: 15px;

@@ -42,7 +42,6 @@ export const EditArtistProfilePage = memo(() => {
 
     const confirmClick = async () => {
         if (!artist) return;
-        // const updates: UpdateArtistDto = { username, name, description };
         let hasChanges = !!avatar;
         const formData = new FormData();
         if (avatar) formData.append('image', avatar, avatar.name);

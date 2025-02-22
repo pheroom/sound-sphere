@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import cls from './ArtistCard.module.css';
 import { classNames } from '../../utils/classNames.ts';
-import { Avatar, AvatarSize } from '../../ui/Avatar/Avatar.tsx';
 import { Artist } from '../../models/artist/artistSchema.ts';
+import { Picture, PictureBorderMode, PicturePlaceholder, PictureSize } from '../../ui/Picture/Picture.tsx';
 
 export enum ArtistCardSize{
     S = 'size_s',
@@ -21,9 +21,11 @@ export const ArtistCard = memo(({ className, artist, size = ArtistCardSize.M }: 
     if (size === ArtistCardSize.M) {
         return (
             <div className={classNames(cls.ArtistCard, {}, [className, cls[size]])}>
-                <Avatar
+                <Picture
                     imgSrc={artist.avatarURL}
-                    size={AvatarSize.XS}
+                    size={PictureSize.XS}
+                    borderMode={PictureBorderMode.CIRCLE}
+                    picturePlaceholder={PicturePlaceholder.USER}
                     className={cls.avatarImg}
                 />
                 <div className={cls.info}>
@@ -36,9 +38,11 @@ export const ArtistCard = memo(({ className, artist, size = ArtistCardSize.M }: 
     if (size === ArtistCardSize.S) {
         return (
             <div className={classNames(cls.ArtistCard, {}, [className, cls[size]])}>
-                <Avatar
+                <Picture
                     imgSrc={artist.avatarURL}
-                    size={AvatarSize.S}
+                    size={PictureSize.S}
+                    borderMode={PictureBorderMode.CIRCLE}
+                    picturePlaceholder={PicturePlaceholder.USER}
                     className={cls.avatarImg}
                 />
                 <div className={cls.info}>
@@ -50,7 +54,12 @@ export const ArtistCard = memo(({ className, artist, size = ArtistCardSize.M }: 
     }
     return (
         <div className={classNames(cls.ArtistCard, {}, [className, cls[size]])}>
-            <Avatar imgSrc={artist.avatarURL} />
+            <Picture
+                imgSrc={artist.avatarURL}
+                borderMode={PictureBorderMode.CIRCLE}
+                picturePlaceholder={PicturePlaceholder.USER}
+                className={cls.avatarImg}
+            />
             <div className={cls.data}>
                 <div className={cls.nameBox}>
                     <div className={cls.name}>

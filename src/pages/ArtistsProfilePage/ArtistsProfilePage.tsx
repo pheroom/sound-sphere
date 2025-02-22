@@ -9,6 +9,7 @@ import { getArtistsProfileData } from '../../models/artistsProfile/selectors/get
 import { getArtistsProfileError } from '../../models/artistsProfile/selectors/getArtistsProfileError.ts';
 import { getArtistsProfileIsLoading } from '../../models/artistsProfile/selectors/getArtistsProfileIsLoading.ts';
 import { PageLoader } from '../../components/PageLoader/PageLoader.tsx';
+import { ErrorPage } from '../ErrorPage/ErrorPage.tsx';
 
 export const ArtistsProfilePage = memo(() => {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ export const ArtistsProfilePage = memo(() => {
         }
     }, [id, dispatch]);
 
-    if (artistsProfileError) return <div>{artistsProfileError}</div>;
+    if (artistsProfileError) return <ErrorPage text={artistsProfileError} />;
     if (!artist || isLoading) return <PageLoader />;
     return (
         <div className={classNames(cls.ArtistsProfilePage, {}, [])}>

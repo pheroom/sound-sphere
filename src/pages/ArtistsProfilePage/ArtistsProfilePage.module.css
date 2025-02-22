@@ -1,5 +1,5 @@
 .ArtistsProfilePage{
-    margin-top: var(--page-top-margin);
+    margin: var(--page-margin) 0;
 }
 
 .header{

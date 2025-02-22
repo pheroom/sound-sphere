@@ -3,7 +3,7 @@ import cls from './ArtistsListPage.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
 import { getArtistsListData } from '../../models/artistsList/selectors/getArtistsListData.ts';
-import { fetchArtistsBySearch, SearchParamsDto } from '../../models/artistsList/services/fetchArtistsBySearch.ts';
+import { fetchArtistsBySearch } from '../../models/artistsList/services/fetchArtistsBySearch.ts';
 import { ArtistCard } from '../../components/ArtistCard/ArtistCard.tsx';
 import { AppLink } from '../../ui/AppLink/AppLink.tsx';
 import { AppRoutes } from '../../routeConfig.tsx';

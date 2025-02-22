@@ -2,15 +2,11 @@ import { memo, useState } from 'react';
 import { useNavigate } from 'react-router';
 import cls from './CreateAlbumPage.module.css';
 import { classNames } from '../../utils/classNames.ts';
-import { Input } from '../../ui/Input/Input.tsx';
-import { InputFile } from '../../ui/InputFile/InputFile.tsx';
-import { Button, ButtonSize, ButtonTheme } from '../../ui/Button/Button.tsx';
 import { AppRoutes } from '../../routeConfig.tsx';
-import { useAppDispatch, useAppSelector } from '../../store/store.ts';
-import { getArtistError } from '../../models/artist/selectors/getArtistError.ts';
-import { getArtistIsLoading } from '../../models/artist/selectors/getArtistIsLoading.ts';
-import { artistCreateAlbum } from '../../models/artist/services/artistCreateAlbum.ts';
-import { Picture, PictureSize } from '../../ui/Picture/Picture.tsx';
+import { Form, FormButton, FormError, FormInput, FormInputFile, FormPictureBox } from '../../ui/Form/Form.tsx';
+import { useFetching } from '../../utils/useFetching.ts';
+import { Album } from '../../models/albumsList/albumsListSchema.ts';
+import AlbumService from '../../services/AlbumService.ts';
 
 interface CreateAlbumPageProps {
     className?: string
@@ -18,60 +14,49 @@ interface CreateAlbumPageProps {
 
 export const CreateAlbumPage = memo(({ className }: CreateAlbumPageProps) => {
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
 
-    const isLoading = useAppSelector(getArtistIsLoading);
-    const error = useAppSelector(getArtistError);
-
-    const [name, setName] = useState('');
+    const [createdData, setCreatedData] = useState<Partial<Album>>({ name: '' });
     const [picture, setPicture] = useState<File>();
 
+    const [createAlbum, createAlbumIsLoading, createAlbumError] = useFetching(async (data: FormData) => {
+        return AlbumService.createAlbum(data);
+    });
+
     const confirmClick = async () => {
-        if (!name) return;
-        const res = await dispatch(artistCreateAlbum({ name }));
-        if (res.meta.requestStatus === 'fulfilled') {
-            navigate(AppRoutes.ARTIST_PROFILE);
-        }
+        if (!createdData.name) return;
+        const data = new FormData();
+        data.append('name', createdData.name);
+        if (picture) data.append('image', picture, picture.name);
+
+        createAlbum(data).then((res) => res && navigate(AppRoutes.ARTIST_PROFILE));
     };
 
     return (
         <div className={classNames(cls.CreateAlbumPage, {}, [className])}>
-            <div className={cls.form}>
-                <p className={cls.title}>Add new album</p>
-                <Input
-                    fullWidth
-                    placeholder="Title"
-                    value={name}
-                    onChange={(value) => setName(value)}
-                    autoFocus
-                    type="text"
-                    classNameBox={cls.input}
+            <Form title="Add new album">
+                <FormInput
+                    placeholder="Name"
+                    value={createdData.name}
+                    setData={setCreatedData}
+                    dataName="name"
                 />
-                <InputFile
-                    className={cls.input}
-                    text="Select new album picture"
+                <FormInputFile
+                    text="Select new avatar image"
                     accept="image/*"
                     onChange={(e) => setPicture(e?.[0])}
                 />
-                <Button
-                    disabled={isLoading}
-                    size={ButtonSize.L}
-                    theme={ButtonTheme.POSITIVE}
+                <FormButton
+                    disabled={createAlbumIsLoading}
                     onClick={confirmClick}
-                    className={cls.button}
                 >
                     Confirm
-                </Button>
-                {error && <div className={cls.error}>{error}</div>}
-            </div>
-            <div className={cls.pictureBox}>
-                <p className={cls.pictureBoxText}>Selected album cover:</p>
-                <Picture
-                    size={PictureSize.M}
-                    imgSrc={picture && URL.createObjectURL(picture)}
-                    noApiUrl
-                />
-            </div>
+                </FormButton>
+                <FormError>{createAlbumError}</FormError>
+            </Form>
+            <FormPictureBox
+                imgSrc={(picture && URL.createObjectURL(picture))}
+                noApiUrl={!!picture}
+            />
         </div>
     );
 });

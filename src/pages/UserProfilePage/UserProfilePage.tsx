@@ -9,6 +9,7 @@ import { getUserAuthData } from '../../models/user/selectors/getUserAuthData.ts'
 import { authLogout } from '../../models/auth/services/authLogout.ts';
 import { AppLink, AppLinkMode, AppLinkTheme } from '../../ui/AppLink/AppLink.tsx';
 import { UserCard, UserCardSize } from '../../components/UserCard/UserCard.tsx';
+import { PageLoader } from '../../components/PageLoader/PageLoader.tsx';
 
 export const UserProfilePage = memo(() => {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ export const UserProfilePage = memo(() => {
         }
     };
 
-    if (!user) return <div>user loading...</div>;
+    if (!user) return <PageLoader />;
     return (
         <div className={classNames(cls.ProfilePage, {}, [])}>
             <div className={cls.header}>

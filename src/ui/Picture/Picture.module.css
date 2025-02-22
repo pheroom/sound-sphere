@@ -3,7 +3,7 @@
     align-items: flex-start;
     justify-content: center;
     overflow: hidden;
-
+    flex-shrink: 0;
     img{
         width: 100%;
     }
