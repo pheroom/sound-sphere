@@ -5,12 +5,12 @@ import { classNames } from './utils/classNames.ts';
 import { AppRouter } from './components/AppRouter/AppRouter.tsx';
 import { Player } from './components/Player/Player.tsx';
 import { useAppDispatch, useAppSelector } from './store/store.ts';
-import { getAuthInited } from './models/auth/selectors/getAuthInited.ts';
-import { checkAuthTarget } from './models/auth/services/checkAuthTarget.ts';
+import { getAuthInited } from './store/auth/selectors/getAuthInited.ts';
+import { checkAuthTarget } from './store/auth/services/checkAuthTarget.ts';
 import { PageLoader } from './components/PageLoader/PageLoader.tsx';
-import { getAuthIsLoading } from './models/auth/selectors/getAuthIsLoading.ts';
-import { getPlayerData } from './models/player/selectors/getPlayerData.ts';
-import { playerActions } from './models/player/playerSlice.ts';
+import { getAuthIsLoading } from './store/auth/selectors/getAuthIsLoading.ts';
+import { getPlayerData } from './store/player/selectors/getPlayerData.ts';
+import { playerActions } from './store/player/playerSlice.ts';
 
 function App() {
     const dispatch = useAppDispatch();

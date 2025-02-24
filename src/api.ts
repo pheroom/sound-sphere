@@ -15,3 +15,9 @@ const authInterceptor = (config: InternalAxiosRequestConfig) => {
 };
 
 $api.interceptors.request.use(authInterceptor);
+
+export interface SearchParamsDto{
+    query?: string
+    page: number
+    limit: number
+}

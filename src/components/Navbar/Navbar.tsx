@@ -6,13 +6,13 @@ import { AppRoutes } from '../../routeConfig.tsx';
 import { Logo } from '../../ui/Logo/Logo.tsx';
 import { AppLink, AppLinkMode } from '../../ui/AppLink/AppLink.tsx';
 import { useAppSelector } from '../../store/store.ts';
-import { getAuthTarget } from '../../models/auth/selectors/getAuthTarget.ts';
-import { TargetTypes } from '../../models/auth/authSchema.ts';
-import { getAuthInited } from '../../models/auth/selectors/getAuthInited.ts';
+import { getAuthTarget } from '../../store/auth/selectors/getAuthTarget.ts';
+import { TargetTypes } from '../../store/auth/authSchema.ts';
+import { getAuthInited } from '../../store/auth/selectors/getAuthInited.ts';
 import { Avatar } from '../../ui/Avatar/Avatar.tsx';
 import { UserCard, UserCardSize } from '../UserCard/UserCard.tsx';
-import { getUserAuthData } from '../../models/user/selectors/getUserAuthData.ts';
-import { getArtistAuthData } from '../../models/artist/selectors/getArtistAuthData.ts';
+import { getUserAuthData } from '../../store/user/selectors/getUserAuthData.ts';
+import { getArtistAuthData } from '../../store/artist/selectors/getArtistAuthData.ts';
 import { ArtistCard, ArtistCardSize } from '../ArtistCard/ArtistCard.tsx';
 
 interface NavbarProps{
@@ -58,7 +58,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
     const contentForArtist = (
         <nav className={cls.links}>
-            <AppLink className={cls.commonLink} mode={AppLinkMode.LINK} to={AppRoutes.ARTIST_CREATE_ALBUM}>
+            <AppLink className={cls.commonLink} mode={AppLinkMode.LINK} to={AppRoutes.getCreateAlbum()}>
                 Add Album
             </AppLink>
             <Link to={AppRoutes.ARTIST_PROFILE} className={cls.profileLink}>

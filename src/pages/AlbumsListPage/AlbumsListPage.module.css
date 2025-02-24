@@ -1,0 +1,16 @@
+.AlbumsListPage {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.searchForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    .input{
+        flex-grow: 1;
+    }
+}

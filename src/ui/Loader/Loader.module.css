@@ -1,5 +1,5 @@
 .Loader {
-    width: 100px;
+    margin: 0 auto;
 
     svg {
         transform-origin: center;
@@ -14,6 +14,14 @@
         stroke-dashoffset: 0;
         stroke-linecap: round;
         animation: dash4 1.5s ease-in-out infinite;
+    }
+
+    &.medium{
+        width: 100px;
+    }
+
+    &.small{
+        width: 50px;
     }
 }
 

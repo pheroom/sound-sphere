@@ -5,9 +5,9 @@ import { classNames } from '../../utils/classNames.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { Form, FormButton, FormError, FormInput, FormLink, FormSep } from '../../ui/Form/Form.tsx';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
-import { getUserIsLoading } from '../../models/user/selectors/getUserIsLoading.ts';
-import { getUserError } from '../../models/user/selectors/getUserError.ts';
-import { userLoginByUsername } from '../../models/user/services/userLoginByUsername.ts';
+import { getUserIsLoading } from '../../store/user/selectors/getUserIsLoading.ts';
+import { getUserError } from '../../store/user/selectors/getUserError.ts';
+import { userLoginByUsername } from '../../store/user/services/userLoginByUsername.ts';
 
 export const SignInPage = memo(() => {
     const navigate = useNavigate();

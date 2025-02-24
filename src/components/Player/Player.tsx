@@ -13,16 +13,16 @@ import RepeatOneIcon from '../../assets/icons/repeat1.svg?react';
 import AddIcon from '../../assets/icons/add.svg?react';
 import AddedIcon from '../../assets/icons/added.svg?react';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
-import { getPlayerData } from '../../models/player/selectors/getPlayerData.ts';
-import { getPlayerTrack } from '../../models/player/selectors/getPlayerTrack.ts';
+import { getPlayerData } from '../../store/player/selectors/getPlayerData.ts';
+import { getPlayerTrack } from '../../store/player/selectors/getPlayerTrack.ts';
 import { getFullFilePath } from '../../utils/getFullFilePath.ts';
-import { playerActions } from '../../models/player/playerSlice.ts';
+import { playerActions } from '../../store/player/playerSlice.ts';
 import { ArtistsLinks } from '../ArtistsLinks/ArtistsLinks.tsx';
 import { Picture, PictureSize } from '../../ui/Picture/Picture.tsx';
 import { useDebounce } from '../../utils/useDebounce.ts';
 import { VOLUME_LOCALSTORAGE_KEY } from '../../utils/const.ts';
-import { RepeatMode } from '../../models/player/playerSchema.ts';
-import { getPlayerCurrentVolume } from '../../models/player/selectors/getPlayerCurrentVolume.ts';
+import { RepeatMode } from '../../store/player/playerSchema.ts';
+import { getPlayerCurrentVolume } from '../../store/player/selectors/getPlayerCurrentVolume.ts';
 
 interface PlayerProps {
     className?: string
@@ -145,6 +145,13 @@ export const Player = memo(({ className }: PlayerProps) => {
             audioRef.current.loop = repeatMode === RepeatMode.REPEAT_ONE;
         }
     }, [repeatMode]);
+
+    // useEffect(() => {
+    //     if (audioRef.current.paused === isPlaying) {
+    //         console.log(audioRef.current.paused, isPlaying);
+    //         dispatch(playerActions.setIsPlaying(audioRef.current.paused));
+    //     }
+    // }, [audioRef.current.paused]);
 
     if (!isActive || !currentTrack) return <></>;
     return (

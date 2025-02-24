@@ -15,11 +15,11 @@ import {
 } from '../../ui/Form/Form.tsx';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { PictureBorderMode, PicturePlaceholder } from '../../ui/Picture/Picture.tsx';
-import { getUserAuthData } from '../../models/user/selectors/getUserAuthData.ts';
-import { getUserIsLoading } from '../../models/user/selectors/getUserIsLoading.ts';
-import { getUserError } from '../../models/user/selectors/getUserError.ts';
-import { UpdateUserDto } from '../../models/user/userSchema.ts';
-import { updateUserProfile } from '../../models/user/services/updateUserProfile.ts';
+import { getUserAuthData } from '../../store/user/selectors/getUserAuthData.ts';
+import { getUserIsLoading } from '../../store/user/selectors/getUserIsLoading.ts';
+import { getUserError } from '../../store/user/selectors/getUserError.ts';
+import { UpdateUserDto } from '../../models/User.ts';
+import { updateUserProfile } from '../../store/user/services/updateUserProfile.ts';
 
 export const EditUserProfilePage = memo(() => {
     const dispatch = useAppDispatch();

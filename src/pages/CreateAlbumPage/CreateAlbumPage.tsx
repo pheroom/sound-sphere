@@ -5,7 +5,7 @@ import { classNames } from '../../utils/classNames.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { Form, FormButton, FormError, FormInput, FormInputFile, FormPictureBox } from '../../ui/Form/Form.tsx';
 import { useFetching } from '../../utils/useFetching.ts';
-import { Album } from '../../models/albumsList/albumsListSchema.ts';
+import { Album } from '../../models/Album.ts';
 import AlbumService from '../../services/AlbumService.ts';
 
 interface CreateAlbumPageProps {

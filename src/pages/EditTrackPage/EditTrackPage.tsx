@@ -5,7 +5,7 @@ import { Form, FormButton, FormError, FormInput, FormInputFile } from '../../ui/
 import { classNames } from '../../utils/classNames.ts';
 import { useFetching } from '../../utils/useFetching.ts';
 import TrackService from '../../services/TrackService.ts';
-import { Track } from '../../models/tracsList/tracksListSchema.ts';
+import { Track } from '../../models/Track.ts';
 import { ErrorPage } from '../ErrorPage/ErrorPage.tsx';
 import { PageLoader } from '../../components/PageLoader/PageLoader.tsx';
 

@@ -2,7 +2,7 @@ import { memo } from 'react';
 import cls from './UserCard.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import { Avatar, AvatarSize } from '../../ui/Avatar/Avatar.tsx';
-import { User } from '../../models/user/userSchema.ts';
+import { User } from '../../models/User.ts';
 import { Picture, PictureBorderMode, PicturePlaceholder, PictureSize } from '../../ui/Picture/Picture.tsx';
 
 export enum UserCardSize{

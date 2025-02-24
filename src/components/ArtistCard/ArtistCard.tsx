@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import cls from './ArtistCard.module.css';
 import { classNames } from '../../utils/classNames.ts';
-import { Artist } from '../../models/artist/artistSchema.ts';
+import { Artist } from '../../models/Artist.ts';
 import { Picture, PictureBorderMode, PicturePlaceholder, PictureSize } from '../../ui/Picture/Picture.tsx';
 
 export enum ArtistCardSize{

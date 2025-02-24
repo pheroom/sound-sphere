@@ -52,6 +52,11 @@ module.exports = {
         'consistent-return': 'off',
         'default-case': 'warn',
         'react/jsx-no-useless-fragment': 'warn',
-        'no-restricted-globals': 'warn'
+        'no-restricted-globals': 'warn',
+        'lines-between-class-members': [
+            'error',
+            'always',
+            { 'exceptAfterSingleLine': true },
+        ]
     },
 };

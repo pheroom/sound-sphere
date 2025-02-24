@@ -2,26 +2,16 @@ import { configureStore, Dispatch } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { AxiosInstance } from 'axios';
 import { $api } from '../api.ts';
-import { counterReducer } from '../models/counter/counterSlice.ts';
-import { userReducer } from '../models/user/userSlice.ts';
-import { authReducer } from '../models/auth/authSlice.ts';
-import { artistReducer } from '../models/artist/artistSlice.ts';
-import { artistsProfileReducer } from '../models/artistsProfile/artistsProfileSlice.ts';
-import { usersProfileReducer } from '../models/userProfile/usersProfileSlice.ts';
-import { artistsListReducer } from '../models/artistsList/artistsListSlice.ts';
-import { albumsListReducer } from '../models/albumsList/albumsListSlice.ts';
-import { playerReducer } from '../models/player/playerSlice.ts';
+import { userReducer } from './user/userSlice.ts';
+import { authReducer } from './auth/authSlice.ts';
+import { artistReducer } from './artist/artistSlice.ts';
+import { playerReducer } from './player/playerSlice.ts';
 
 export const store = configureStore({
     reducer: {
-        counter: counterReducer,
         auth: authReducer,
         user: userReducer,
-        usersProfile: usersProfileReducer,
         artist: artistReducer,
-        artistsList: artistsListReducer,
-        artistsProfile: artistsProfileReducer,
-        albumsList: albumsListReducer,
         player: playerReducer,
     },
     devTools: import.meta.env.DEV,

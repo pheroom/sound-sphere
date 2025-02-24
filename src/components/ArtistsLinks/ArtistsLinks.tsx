@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import cls from './ArtistsLinks.module.css';
-import { Artist } from '../../models/artist/artistSchema.ts';
+import { Artist } from '../../models/Artist.ts';
 import { classNames } from '../../utils/classNames.ts';
 import { AppLink, AppLinkMode } from '../../ui/AppLink/AppLink.tsx';
 import { AppRoutes } from '../../routeConfig.tsx';

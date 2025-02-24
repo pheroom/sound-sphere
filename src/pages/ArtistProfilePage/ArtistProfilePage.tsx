@@ -5,18 +5,18 @@ import { classNames } from '../../utils/classNames.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
 import { Button, ButtonTheme } from '../../ui/Button/Button.tsx';
-import { authLogout } from '../../models/auth/services/authLogout.ts';
+import { authLogout } from '../../store/auth/services/authLogout.ts';
 import { AppLink, AppLinkMode, AppLinkTheme } from '../../ui/AppLink/AppLink.tsx';
-import { getArtistAuthData } from '../../models/artist/selectors/getArtistAuthData.ts';
+import { getArtistAuthData } from '../../store/artist/selectors/getArtistAuthData.ts';
 import { ArtistCard, ArtistCardSize } from '../../components/ArtistCard/ArtistCard.tsx';
-import { fetchCreatedAlbumsList } from '../../models/artist/services/fetchCreatedAlbumsList.ts';
-import { getArtistCreatedAlbums } from '../../models/artist/selectors/getArtistCreatedAlbums.ts';
+import { fetchCreatedAlbumsList } from '../../store/artist/services/fetchCreatedAlbumsList.ts';
+import { getArtistCreatedAlbums } from '../../store/artist/selectors/getArtistCreatedAlbums.ts';
 import { AlbumsList } from '../../components/AlbumsList/AlbumsList.tsx';
 import DeleteIcon from '../../assets/icons/delete.svg?react';
 import { useFetching } from '../../utils/useFetching.ts';
 import AlbumService from '../../services/AlbumService.ts';
 import { PageLoader } from '../../components/PageLoader/PageLoader.tsx';
-import { artistActions } from '../../models/artist/artistSlice.ts';
+import { artistActions } from '../../store/artist/artistSlice.ts';
 import { Text, TextMode } from '../../ui/Text/Text.tsx';
 
 export const ArtistProfilePage = memo(() => {
@@ -61,7 +61,7 @@ export const ArtistProfilePage = memo(() => {
             <Text mode={TextMode.ERROR}>{deleteAlbumError}</Text>
             <AlbumsList
                 albums={albums}
-                linkFunc={(id) => `${AppRoutes.ARTIST_EDIT_ALBUM}/${id}`}
+                linkFunc={AppRoutes.getEditAlbum}
                 actions={[[<DeleteIcon />, deleteTrackHandler]]}
             />
         </div>

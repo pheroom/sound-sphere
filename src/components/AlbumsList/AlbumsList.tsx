@@ -2,12 +2,12 @@ import { memo, ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 import cls from './AlbumsList.module.css';
 import { classNames } from '../../utils/classNames.ts';
-import { Album } from '../../models/albumsList/albumsListSchema.ts';
+import { Album } from '../../models/Album.ts';
 import { AppLink } from '../../ui/AppLink/AppLink.tsx';
 import { ArtistsLinks } from '../ArtistsLinks/ArtistsLinks.tsx';
 import { Picture, PictureSize } from '../../ui/Picture/Picture.tsx';
 import { Button, ButtonMode } from '../../ui/Button/Button.tsx';
-import { playerActions } from '../../models/player/playerSlice.ts';
+import { playerActions } from '../../store/player/playerSlice.ts';
 
 interface AlbumsListProps {
     className?: string
@@ -30,7 +30,7 @@ export const AlbumsList = memo(({ className, albums, linkFunc, actions }: Albums
             className={classNames(cls.AlbumsList, {}, [className])}
             onClick={(e) => clickAlbumHandler(e)}
         >
-            {albums
+            {albums?.length
                 ? albums.map((album) => (
                     <div key={album.id} data-album-id={album.id} className={cls.box}>
                         <Picture

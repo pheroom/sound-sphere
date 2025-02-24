@@ -1,0 +1,12 @@
+.ListTemplate {
+    & .link{
+        /*margin-bottom: 15px;*/
+    }
+}
+
+.header{
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 10px;
+}

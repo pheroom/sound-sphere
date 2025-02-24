@@ -1,21 +1,36 @@
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import cls from './UserProfilePage.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
 import { Button, ButtonTheme } from '../../ui/Button/Button.tsx';
-import { getUserAuthData } from '../../models/user/selectors/getUserAuthData.ts';
-import { authLogout } from '../../models/auth/services/authLogout.ts';
+import { getUserAuthData } from '../../store/user/selectors/getUserAuthData.ts';
+import { authLogout } from '../../store/auth/services/authLogout.ts';
 import { AppLink, AppLinkMode, AppLinkTheme } from '../../ui/AppLink/AppLink.tsx';
 import { UserCard, UserCardSize } from '../../components/UserCard/UserCard.tsx';
 import { PageLoader } from '../../components/PageLoader/PageLoader.tsx';
+import { Track } from '../../models/Track.ts';
+import { useFetching } from '../../utils/useFetching.ts';
+import TrackService from '../../services/TrackService.ts';
+import { TracksList } from '../../components/TracksList/TracksList.tsx';
 
 export const UserProfilePage = memo(() => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const user = useAppSelector(getUserAuthData);
+
+    const [favouritesTracks, setFavouritesTracks] = useState<Track[] | undefined>();
+    const [fetchFavouritesTracks] = useFetching(async () => {
+        if (!user) return;
+        const tracks = await TrackService.getUserFavouritesTracks(user.id, { page: 1, limit: 10 });
+        setFavouritesTracks(tracks);
+    });
+
+    useEffect(() => {
+        fetchFavouritesTracks();
+    }, []);
 
     const logoutClick = async () => {
         const res = await dispatch(authLogout());
@@ -36,6 +51,14 @@ export const UserProfilePage = memo(() => {
                     </AppLink>
                 </div>
             </div>
+            <br />
+            <AppLink to={AppRoutes.getUserFavouritesAlbums(user.id)}>Favourites Albums</AppLink>
+            <br />
+            <AppLink to={AppRoutes.getUserFavouritesPlaylists(user.id)}>Favourites Playlists</AppLink>
+            <br />
+            <AppLink to={AppRoutes.getUserCreatedPlaylists(user.id)}>Created Playlists</AppLink>
+            <br />
+            <TracksList tracks={favouritesTracks} />
         </div>
     );
 });

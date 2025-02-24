@@ -6,7 +6,7 @@ import { useFetching } from '../../utils/useFetching.ts';
 import TrackService from '../../services/TrackService.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { Form, FormButton, FormError, FormInput, FormInputFile } from '../../ui/Form/Form.tsx';
-import { Track } from '../../models/tracsList/tracksListSchema.ts';
+import { Track } from '../../models/Track.ts';
 
 interface CreateTrackPageProps {
     className?: string
@@ -29,7 +29,7 @@ export const CreateTrackPage = memo(({ className }: CreateTrackPageProps) => {
         data.append('name', createdData.name);
         data.append('audio', audio, audio.name);
 
-        createTrack(data).then((res) => res && navigate(`${AppRoutes.ARTIST_EDIT_ALBUM}/${albumId}`));
+        createTrack(data).then((res) => res && navigate(AppRoutes.getEditAlbum(+albumId)));
     };
 
     return (

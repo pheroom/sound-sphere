@@ -13,11 +13,11 @@ import {
     FormTextarea,
 } from '../../ui/Form/Form.tsx';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
-import { getArtistAuthData } from '../../models/artist/selectors/getArtistAuthData.ts';
-import { getArtistIsLoading } from '../../models/artist/selectors/getArtistIsLoading.ts';
-import { getArtistError } from '../../models/artist/selectors/getArtistError.ts';
-import { UpdateArtistDto } from '../../models/artist/artistSchema.ts';
-import { updateArtistProfile } from '../../models/artist/services/updateArtistProfile.ts';
+import { getArtistAuthData } from '../../store/artist/selectors/getArtistAuthData.ts';
+import { getArtistIsLoading } from '../../store/artist/selectors/getArtistIsLoading.ts';
+import { getArtistError } from '../../store/artist/selectors/getArtistError.ts';
+import { UpdateArtistDto } from '../../models/Artist.ts';
+import { updateArtistProfile } from '../../store/artist/services/updateArtistProfile.ts';
 import { PageLoader } from '../../components/PageLoader/PageLoader.tsx';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { PictureBorderMode, PicturePlaceholder } from '../../ui/Picture/Picture.tsx';

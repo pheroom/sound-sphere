@@ -4,12 +4,12 @@ import cls from './ArtistSignOnPage.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
-import { getUserIsLoading } from '../../models/user/selectors/getUserIsLoading.ts';
-import { getUserError } from '../../models/user/selectors/getUserError.ts';
+import { getUserIsLoading } from '../../store/user/selectors/getUserIsLoading.ts';
+import { getUserError } from '../../store/user/selectors/getUserError.ts';
 import { Form, FormButton, FormError, FormInput } from '../../ui/Form/Form.tsx';
-import { artistRegistration } from '../../models/artist/services/artistRegistration.ts';
-import { getArtistIsLoading } from '../../models/artist/selectors/getArtistIsLoading.ts';
-import { getArtistError } from '../../models/artist/selectors/getArtistError.ts';
+import { artistRegistration } from '../../store/artist/services/artistRegistration.ts';
+import { getArtistIsLoading } from '../../store/artist/selectors/getArtistIsLoading.ts';
+import { getArtistError } from '../../store/artist/selectors/getArtistError.ts';
 
 export const ArtistSignOnPage = memo(() => {
     const navigate = useNavigate();

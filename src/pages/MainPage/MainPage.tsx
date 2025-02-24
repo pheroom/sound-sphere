@@ -4,16 +4,11 @@ import cls from './MainPage.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
-import { getCounterValue } from '../../models/counter/selectors/getCounterValue.ts';
 import { Button } from '../../ui/Button/Button.tsx';
-import { counterActions } from '../../models/counter/counterSlice.ts';
-import { getAuthTarget } from '../../models/auth/selectors/getAuthTarget.ts';
-import { TargetTypes } from '../../models/auth/authSchema.ts';
-import { Loader } from '../../ui/Loader/Loader.tsx';
+import { getAuthTarget } from '../../store/auth/selectors/getAuthTarget.ts';
+import { TargetTypes } from '../../store/auth/authSchema.ts';
 
 export const MainPage = memo(() => {
-    const dispatch = useAppDispatch();
-    const value = useAppSelector(getCounterValue);
     const authTarget = useAppSelector(getAuthTarget);
 
     if (authTarget === TargetTypes.USER) {
@@ -40,14 +35,6 @@ export const MainPage = memo(() => {
             <div>
                 <Link to={AppRoutes.ALBUMS}>albums</Link>
             </div>
-
-            <br />
-            <h3>{value}</h3>
-            <br />
-            <Button onClick={() => dispatch(counterActions.increment())}>+</Button>
-            <br />
-            <Button onClick={() => dispatch(counterActions.decrement())}>-</Button>
-            <br />
 
         </div>
     );

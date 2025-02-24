@@ -1,7 +1,20 @@
-import { $api } from '../api.ts';
-import { Track } from '../models/tracsList/tracksListSchema.ts';
+import { $api, SearchParamsDto } from '../api.ts';
+import { Track } from '../models/Track.ts';
 
 export default class TrackService {
+    static async getAllTracks(params: SearchParamsDto): Promise<Track[]> {
+        const res = await $api.get<Track[]>('/tracks/all', { params });
+        if (!res.data) {
+            throw new Error();
+        }
+        const tracks = res.data.map((track) => {
+            const cur = { ...track, isFavourite: !!track.favouriteOfUsers?.length };
+            delete cur.favouriteOfUsers;
+            return cur;
+        });
+        return tracks;
+    }
+
     static async getTrack(id: number): Promise<Track> {
         const res = await $api.get<Track>(`/tracks/get-one-by-id/${id}`);
         if (!res.data) {
@@ -28,5 +41,21 @@ export default class TrackService {
 
     static async deleteAlbum(id: number) {
         await $api.delete(`/tracks/${id}`);
+    }
+
+    static async getUserFavouritesTracks(userId: number, params: SearchParamsDto): Promise<Track[]> {
+        const res = await $api.get<Track[]>(`/users/favourite-tracks/${userId}`, { params });
+        if (!res.data) {
+            throw new Error();
+        }
+        return res.data;
+    }
+
+    static async addUserFavouritesTrack(trackId: number) {
+        await $api.post(`/users/favourite-tracks/${trackId}`);
+    }
+
+    static async deleteUserFavouritesTrack(trackId: number) {
+        await $api.delete(`/users/favourite-tracks/${trackId}`);
     }
 }

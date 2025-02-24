@@ -5,9 +5,9 @@ import { classNames } from '../../utils/classNames.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
 import { Form, FormButton, FormError, FormInput, FormLink, FormSep } from '../../ui/Form/Form.tsx';
 import { useAppDispatch, useAppSelector } from '../../store/store.ts';
-import { getArtistIsLoading } from '../../models/artist/selectors/getArtistIsLoading.ts';
-import { getArtistError } from '../../models/artist/selectors/getArtistError.ts';
-import { artistLoginByUsername } from '../../models/artist/services/artistLoginByUsername.ts';
+import { getArtistIsLoading } from '../../store/artist/selectors/getArtistIsLoading.ts';
+import { getArtistError } from '../../store/artist/selectors/getArtistError.ts';
+import { artistLoginByUsername } from '../../store/artist/services/artistLoginByUsername.ts';
 
 export const ArtistSignInPage = memo(() => {
     const navigate = useNavigate();
