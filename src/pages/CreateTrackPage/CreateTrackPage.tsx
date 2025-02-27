@@ -14,7 +14,7 @@ interface CreateTrackPageProps {
 
 export const CreateTrackPage = memo(({ className }: CreateTrackPageProps) => {
     const navigate = useNavigate();
-    const { albumId } = useParams();
+    const { id: albumId } = useParams();
     const [createdData, setCreatedData] = useState<Partial<Track>>({ name: '' });
     const [audio, setAudio] = useState<File>();
 
@@ -23,6 +23,7 @@ export const CreateTrackPage = memo(({ className }: CreateTrackPageProps) => {
     });
 
     const confirmClick = async () => {
+        console.log(albumId, createdData, audio);
         if (!albumId || !createdData.name || !audio) return;
         const data = new FormData();
         data.append('albumId', albumId);

@@ -12,21 +12,22 @@ import { TracksList } from '../../components/TracksList/TracksList.tsx';
 import { useObserver } from '../../utils/useObserver.ts';
 import { PageLoader } from '../../components/PageLoader/PageLoader.tsx';
 import { ErrorPage } from '../ErrorPage/ErrorPage.tsx';
+import { Anchor } from '../../ui/Anchor/Anchor.tsx';
 
 interface TracksListPageProps {
     className?: string
 }
 
 export const TracksListPage = memo(({ className }: TracksListPageProps) => {
+    const [prevSearchQuery, setPrevSearchQuery] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
-
     const [page, setPage] = useState(1);
     const [canLoad, setCanLoad] = useState(true);
     const [tracks, setTracks] = useState<Track[] | undefined>();
-    const [fetchTracks, tracksIsLoading, tracksError] = useFetching(async (params, searchChanged = false) => {
+    const [fetchTracks, tracksIsLoading, tracksError] = useFetching(async (params) => {
         const tracks = await TrackService.getAllTracks(params);
         if (tracks.length < 10) setCanLoad(false);
-        if (searchChanged) {
+        if (searchQuery !== prevSearchQuery) {
             setTracks(tracks);
         } else {
             setTracks((prev) => (prev || []).concat(tracks));
@@ -43,17 +44,18 @@ export const TracksListPage = memo(({ className }: TracksListPageProps) => {
     }, [page]);
 
     const lastElementRef = useObserver(canLoad, tracksIsLoading, () => {
+        if (tracks === undefined) return;
         setPage(page + 1);
     });
 
     const searchClick = () => {
         setPage(1);
         setCanLoad(true);
+        setTracks(undefined);
         fetchTracks({ page: 1, limit: 10, query: searchQuery }, true);
     };
 
     if (tracksError) return <ErrorPage text={tracksError} />;
-    if (!tracks) return <PageLoader />;
     return (
         <div className={classNames(cls.TracksListPage, {}, [className])}>
             <div className={cls.searchForm}>
@@ -66,11 +68,12 @@ export const TracksListPage = memo(({ className }: TracksListPageProps) => {
                 <Button onClick={searchClick}>Search</Button>
             </div>
             <TracksList
+                isLoading={tracksIsLoading}
+                showFavActions
                 linkFunc={AppRoutes.getTrack}
                 tracks={tracks}
             />
-            {tracksIsLoading && <Loader size={LoaderSize.SMALL} />}
-            <div ref={lastElementRef} style={{ height: 20, marginBottom: '-20px', background: 'transparent' }} />
+            <Anchor ref={lastElementRef} />
         </div>
     );
 });

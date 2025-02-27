@@ -7,6 +7,7 @@ export interface Album{
     pictureURL: string
     isPrivate: boolean
     createdAt: string
+    isFavourite?: boolean
     artists: Artist[]
 }
 

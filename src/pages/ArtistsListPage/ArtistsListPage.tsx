@@ -11,6 +11,7 @@ import { Artist } from '../../models/Artist.ts';
 import ArtistService from '../../services/ArtistService.ts';
 import { Loader } from '../../ui/Loader/Loader.tsx';
 import { Text, TextMode } from '../../ui/Text/Text.tsx';
+import { ErrorPage } from '../ErrorPage/ErrorPage.tsx';
 
 interface ArtistsListPageProps {
     className?: string
@@ -31,6 +32,7 @@ export const ArtistsListPage = memo(({ className }: ArtistsListPageProps) => {
 
     const searchClick = () => fetchArtists({ page: 1, limit: 10, query: searchQuery });
 
+    if (artistsError) return <ErrorPage text={artistsError} />;
     return (
         <div className={classNames(cls.ArtistsListPage, {}, [className])}>
             <div className={cls.searchForm}>
@@ -43,7 +45,6 @@ export const ArtistsListPage = memo(({ className }: ArtistsListPageProps) => {
                 <Button onClick={searchClick}>Search</Button>
             </div>
             <div className={cls.artistsList}>
-                <Text mode={TextMode.ERROR}>{artistsError}</Text>
                 {artistsIsLoading && <Loader />}
                 {artists && artists.map((artist) => (
                     <AppLink className={cls.link} to={`${AppRoutes.ARTISTS}/${artist.id}`} key={artist.id}>

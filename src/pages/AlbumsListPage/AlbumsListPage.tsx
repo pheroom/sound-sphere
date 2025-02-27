@@ -11,6 +11,7 @@ import { useFetching } from '../../utils/useFetching.ts';
 import { Album } from '../../models/Album.ts';
 import AlbumService from '../../services/AlbumService.ts';
 import { AlbumsList } from '../../components/AlbumsList/AlbumsList.tsx';
+import { ErrorPage } from '../ErrorPage/ErrorPage.tsx';
 
 interface AlbumsListPageProps {
     className?: string
@@ -21,8 +22,8 @@ export const AlbumsListPage = memo(({ className }: AlbumsListPageProps) => {
 
     const [albums, setAlbums] = useState<Album[] | undefined>();
     const [fetchAlbums, albumsIsLoading, albumsError] = useFetching(async (params) => {
-        const tracks = await AlbumService.getAllAlbums(params);
-        setAlbums(tracks);
+        const albums = await AlbumService.getAllAlbums(params);
+        setAlbums(albums);
     });
 
     useEffect(() => {
@@ -31,6 +32,7 @@ export const AlbumsListPage = memo(({ className }: AlbumsListPageProps) => {
 
     const searchClick = () => fetchAlbums({ page: 1, limit: 10, query: searchQuery });
 
+    if (albumsError) return <ErrorPage text={albumsError} />;
     return (
         <div className={classNames(cls.AlbumsListPage, {}, [className])}>
             <div className={cls.searchForm}>
@@ -42,11 +44,11 @@ export const AlbumsListPage = memo(({ className }: AlbumsListPageProps) => {
                 />
                 <Button onClick={searchClick}>Search</Button>
             </div>
-            <Text mode={TextMode.ERROR}>{albumsError}</Text>
-            {albumsIsLoading && <Loader />}
             <AlbumsList
+                showFavActions
                 linkFunc={AppRoutes.getAlbumWithTracks}
                 albums={albums}
+                isLoading={albumsIsLoading}
             />
         </div>
     );

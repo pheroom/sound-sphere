@@ -57,6 +57,8 @@ module.exports = {
             'error',
             'always',
             { 'exceptAfterSingleLine': true },
-        ]
+        ],
+        'jsx-a11y/media-has-caption': 'warn',
+        'no-nested-ternary': 'warn',
     },
 };

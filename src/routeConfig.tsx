@@ -21,6 +21,12 @@ import { ArtistAlbumsPage } from './pages/ArtistAlbumsPage/ArtistAlbumsPage.tsx'
 import { TracksListPage } from './pages/TracksListPage/TracksListPage.tsx';
 import { TrackPage } from './pages/TrackPage/TrackPage.tsx';
 import { AlbumsListPage } from './pages/AlbumsListPage/AlbumsListPage.tsx';
+import { FavouritesAlbumsPage } from './pages/FavouritesAlbumsPage/FavouritesAlbumsPage.tsx';
+import { CreatePlaylistPage } from './pages/CreatePlaylistPage/CreatePlaylistPage.tsx';
+import { PlaylistsListPage } from './pages/PlaylistsListPage/PlaylistsListPage.tsx';
+import { CreatedPlaylistsPage } from './pages/CreatedPlaylistsPage/CreatedPlaylistsPage.tsx';
+import { FavouritesPlaylistsPage } from './pages/FavouritesPlaylistsPage/FavouritesPlaylistsPage.tsx';
+import { PlaylistPage } from './pages/PlaylistPage/PlaylistPage.tsx';
 
 export class AppRoutes {
     static MAIN = '/';
@@ -45,6 +51,10 @@ export class AppRoutes {
     static ARTIST_CREATE_TRACK_PATH = '/artist-create-track/:albumId';
     static ARTIST_EDIT_TRACK = '/artist-edit-track';
     static ARTIST_EDIT_TRACK_PATH = '/artist-edit-track/:id';
+
+    static getUsersProfile(userId: number | ':id' = ':id') {
+        return `/users/${userId}`;
+    }
 
     static getCreateAlbum() {
         return '/create-album';
@@ -85,6 +95,22 @@ export class AppRoutes {
     static getUserCreatedPlaylists(userId: number | ':id' = ':id') {
         return `/created-playlists/${userId}`;
     }
+
+    static getPlaylist(playlistId: number | ':id' = ':id') {
+        return `/playlists/${playlistId}`;
+    }
+
+    static getPlaylists() {
+        return '/playlists';
+    }
+
+    static getCreatePlaylist() {
+        return '/create-playlist';
+    }
+
+    static getEditPlaylist(playlistId: number | ':id' = ':id') {
+        return `/edit-playlist/${playlistId}`;
+    }
 }
 
 export type appRouteType = {path: string, element: JSX.Element, targets: TargetTypes[]};
@@ -98,11 +124,16 @@ export const routeConfig: appRouteType[] = [
 
     { path: AppRoutes.PROFILE, element: <UserProfilePage />, targets: [TargetTypes.USER] },
     { path: AppRoutes.EDIT_PROFILE, element: <EditUserProfilePage />, targets: [TargetTypes.USER] },
-    { path: AppRoutes.PLAYLISTS, element: <>playlists</>, targets: [TargetTypes.USER] },
-    { path: AppRoutes.getUserFavouritesAlbums(), element: <>fav albums</>, targets: [TargetTypes.USER] },
-    { path: AppRoutes.getUserFavouritesPlaylists(), element: <>fav playlists</>, targets: [TargetTypes.USER] },
-    { path: AppRoutes.getUserCreatedPlaylists(), element: <>createdplaylists</>, targets: [TargetTypes.USER] },
-    { path: AppRoutes.USERS_PROFILE, element: <UsersProfilePage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.TRACKS, element: <TracksListPage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.ALBUMS, element: <AlbumsListPage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.getUsersProfile(), element: <UsersProfilePage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.getUserFavouritesAlbums(), element: <FavouritesAlbumsPage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.getPlaylists(), element: <PlaylistsListPage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.getUserFavouritesPlaylists(), element: <FavouritesPlaylistsPage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.getCreatePlaylist(), element: <CreatePlaylistPage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.getUserCreatedPlaylists(), element: <CreatedPlaylistsPage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.getPlaylist(), element: <PlaylistPage />, targets: [TargetTypes.USER] },
+    { path: AppRoutes.getEditPlaylist(), element: <div>update playlist</div>, targets: [TargetTypes.USER] },
 
     { path: AppRoutes.ARTIST_PROFILE, element: <ArtistProfilePage />, targets: [TargetTypes.ARTIST] },
     { path: AppRoutes.ARTIST_EDIT_PROFILE, element: <EditArtistProfilePage />, targets: [TargetTypes.ARTIST] },
@@ -111,8 +142,6 @@ export const routeConfig: appRouteType[] = [
     { path: AppRoutes.getCreateTrack(), element: <CreateTrackPage />, targets: [TargetTypes.ARTIST] },
     { path: AppRoutes.getEditTrack(), element: <EditTrackPage />, targets: [TargetTypes.ARTIST] },
 
-    { path: AppRoutes.TRACKS, element: <TracksListPage />, targets: [TargetTypes.USER, TargetTypes.ARTIST] },
-    { path: AppRoutes.ALBUMS, element: <AlbumsListPage />, targets: [TargetTypes.USER, TargetTypes.ARTIST] },
     { path: AppRoutes.getArtistAlbums(), element: <ArtistAlbumsPage />, targets: [TargetTypes.USER, TargetTypes.ARTIST] },
     { path: AppRoutes.getAlbumWithTracks(), element: <AlbumPage />, targets: [TargetTypes.USER, TargetTypes.ARTIST] },
     { path: AppRoutes.getTrack(), element: <TrackPage />, targets: [TargetTypes.USER, TargetTypes.ARTIST] },

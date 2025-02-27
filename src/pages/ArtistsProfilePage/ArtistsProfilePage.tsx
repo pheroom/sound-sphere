@@ -52,9 +52,9 @@ export const ArtistsProfilePage = memo(() => {
                 error={albumsError}
             >
                 <AlbumsList
+                    showFavActions
                     albums={albumsData}
                     linkFunc={AppRoutes.getAlbumWithTracks}
-                    actions={[[<AddIcon />, () => console.log('fd')]]}
                 />
             </ListTemplate>
         </div>

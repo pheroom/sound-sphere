@@ -1,2 +1,54 @@
 .MainPage{
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.video{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.info{
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.title{
+    font-size: 60px;
+    line-height: 72px;
+    font-style: italic;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.p{
+    color: #969a9f;
+    font-size: 17px;
+}
+
+.link{
+    margin-top: 20px;
+    padding: 20px 60px;
+    border-radius: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    cursor: pointer;
+    font-size: 19px;
+    font-weight: 400;
+    background: #f45fff;
+    &:hover {
+        background: #e65df4;
+    }
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    span {
+        margin-top: -6px;
+    }
 }

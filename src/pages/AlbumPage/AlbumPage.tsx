@@ -38,7 +38,7 @@ export const AlbumPage = memo(({ className }: AlbumPageProps) => {
         <div>
             <div className={cls.albumCard}>
                 <Picture imgSrc={albumData.pictureURL} size={80} />
-                <div>
+                <div className={cls.albumCardInfo}>
                     <Text mode={TextMode.TITLE}>{albumData.name}</Text>
                     <ArtistsLinks artists={albumData.artists} />
                 </div>
@@ -47,9 +47,9 @@ export const AlbumPage = memo(({ className }: AlbumPageProps) => {
                 title="Tracks"
             >
                 <TracksList
+                    showFavActions
                     tracks={albumData.tracks}
                     linkFunc={AppRoutes.getTrack}
-                    // actions={[[<AddIcon />, () => console.log('fd')]]}
                 />
             </ListTemplate>
         </div>

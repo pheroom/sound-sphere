@@ -1,88 +1,73 @@
 import { Album, AlbumWithTracks } from '../models/Album.ts';
 import { $api, SearchParamsDto } from '../api.ts';
+import { Playlist, PlaylistWithTracks } from '../models/Playlist.ts';
 
 export default class PlaylistService {
-    static async getAllAlbums(params: SearchParamsDto): Promise<Album[]> {
-        const res = await $api.get<Album[]>('/albums/all', { params });
+    static async getAllPlaylists(params: SearchParamsDto): Promise<Playlist[]> {
+        const res = await $api.get<Playlist[]>('/playlists/all', { params });
         if (!res.data) {
             throw new Error();
         }
         return res.data;
     }
 
-    static async getAlbumsByAuthArtist(params: SearchParamsDto): Promise<Album[]> {
-        const res = await $api.get<Album[]>('/artists/created-albums', { params });
+    static async getCreatedPlaylists(userId: number, params: SearchParamsDto): Promise<Playlist[]> {
+        const res = await $api.get<Playlist[]>(`/users/playlists/${userId}`, { params });
         if (!res.data) {
             throw new Error();
         }
         return res.data;
     }
 
-    static async getAlbumsByArtistId(artistId: number, params: SearchParamsDto): Promise<Album[]> {
-        const res = await $api.get<Album[]>(`/artists/albums/${artistId}`, { params });
+    static async getFavouritesPlaylists(userId: number, params: SearchParamsDto): Promise<Playlist[]> {
+        const res = await $api.get<Playlist[]>(`/users/favourite-playlists/${userId}`, { params });
         if (!res.data) {
             throw new Error();
         }
         return res.data;
     }
 
-    static async getAlbumWithTracksByAuthArtist(albumId: number): Promise<AlbumWithTracks> {
-        const res = await $api.get<AlbumWithTracks>(`/albums/artist-with-tracks/${albumId}`);
+    static async getPlaylistWithTracks(playlistId: number): Promise<PlaylistWithTracks> {
+        const res = await $api.get<PlaylistWithTracks>(`/playlists/with-tracks/${playlistId}`);
         if (!res.data) {
             throw new Error();
         }
         return res.data;
     }
 
-    static async getAlbumWithTracks(albumId: number): Promise<AlbumWithTracks> {
-        const res = await $api.get<AlbumWithTracks>(`/albums/with-tracks/${albumId}`);
+    static async createPlaylist(data: FormData): Promise<Playlist> {
+        const res = await $api.post<Playlist>('/playlists', data);
         if (!res.data) {
             throw new Error();
         }
         return res.data;
     }
 
-    static async createAlbum(data: FormData): Promise<Album> {
-        const res = await $api.post<Album>('/albums', data);
+    static async updatePlaylist(id: number, updates: FormData): Promise<Playlist> {
+        const res = await $api.patch<Playlist>(`/playlists/${id}`, updates);
         if (!res.data) {
             throw new Error();
         }
         return res.data;
     }
 
-    static async updateAlbum(id: number, updates: FormData): Promise<Album> {
-        const res = await $api.patch<Album>(`/albums/${id}`, updates);
-        if (!res.data) {
-            throw new Error();
-        }
-        return res.data;
+    static async deletePlaylist(id: number) {
+        await $api.delete(`/playlists/${id}`);
     }
 
-    static async deleteAlbum(id: number) {
-        await $api.delete(`/albums/${id}`);
+    static async addTrackToPlaylist(playlistId: number, trackId: number) {
+        await $api.post(`/playlists/tracks/${playlistId}/${trackId}`);
     }
 
-    static async getUserCreatedPlaylists(userId: number, params: SearchParamsDto): Promise<Album[]> {
-        const res = await $api.get<Album[]>(`/users/favourite-albums/${userId}`, { params });
-        if (!res.data) {
-            throw new Error();
-        }
-        return res.data;
+    static async deleteTrackFromPlaylist(playlistId: number, trackId: number) {
+        await $api.delete(`/playlists/tracks/${playlistId}/${trackId}`);
     }
 
-    static async getUserFavouritesAlbums(userId: number, params: SearchParamsDto): Promise<Album[]> {
-        const res = await $api.get<Album[]>(`/users/favourite-albums/${userId}`, { params });
-        if (!res.data) {
-            throw new Error();
-        }
-        return res.data;
+    static async addUserFavouritesPlaylist(playlistId: number) {
+        await $api.post(`/users/favourite-playlists/${playlistId}`);
     }
 
-    static async addUserFavouritesAlbum(albumId: number) {
-        await $api.post(`/users/favourite-albums/${albumId}`);
-    }
-
-    static async deleteUserFavouritesAlbum(albumId: number) {
-        await $api.delete(`/users/favourite-albums/${albumId}`);
+    static async deleteUserFavouritesPlaylist(playlistId: number) {
+        await $api.delete(`/users/favourite-playlists/${playlistId}`);
     }
 }

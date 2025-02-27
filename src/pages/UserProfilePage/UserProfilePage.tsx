@@ -14,6 +14,8 @@ import { Track } from '../../models/Track.ts';
 import { useFetching } from '../../utils/useFetching.ts';
 import TrackService from '../../services/TrackService.ts';
 import { TracksList } from '../../components/TracksList/TracksList.tsx';
+import { ListTemplate } from '../../components/ListTemplate/ListTemplate.tsx';
+import NextSquareIcon from '../../assets/icons/next-square.svg?react';
 
 export const UserProfilePage = memo(() => {
     const navigate = useNavigate();
@@ -51,14 +53,23 @@ export const UserProfilePage = memo(() => {
                     </AppLink>
                 </div>
             </div>
-            <br />
-            <AppLink to={AppRoutes.getUserFavouritesAlbums(user.id)}>Favourites Albums</AppLink>
-            <br />
-            <AppLink to={AppRoutes.getUserFavouritesPlaylists(user.id)}>Favourites Playlists</AppLink>
-            <br />
-            <AppLink to={AppRoutes.getUserCreatedPlaylists(user.id)}>Created Playlists</AppLink>
-            <br />
-            <TracksList tracks={favouritesTracks} />
+            <div className={cls.nav}>
+                <AppLink to={AppRoutes.getUserFavouritesAlbums(user.id)}>
+                    Favourites Albums
+                    <NextSquareIcon />
+                </AppLink>
+                <AppLink to={AppRoutes.getUserFavouritesPlaylists(user.id)}>
+                    Favourites Playlists
+                    <NextSquareIcon />
+                </AppLink>
+                <AppLink to={AppRoutes.getUserCreatedPlaylists(user.id)}>
+                    Created Playlists
+                    <NextSquareIcon />
+                </AppLink>
+            </div>
+            <ListTemplate title="Favourites Tracks">
+                <TracksList showFavActions tracks={favouritesTracks} />
+            </ListTemplate>
         </div>
     );
 });

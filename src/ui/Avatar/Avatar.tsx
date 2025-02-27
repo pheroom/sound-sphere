@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import cls from './Avatar.module.css';
 import { classNames } from '../../utils/classNames.ts';
-import avatarPlaceholder from '../../assets/avatarPlaceholder.jpg';
+import avatarPlaceholder from '../../assets/avatarPlaceholder.png';
 import { getFullFilePath } from '../../utils/getFullFilePath.ts';
 
 export enum AvatarSize{

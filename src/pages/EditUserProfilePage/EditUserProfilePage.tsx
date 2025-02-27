@@ -50,7 +50,7 @@ export const EditUserProfilePage = memo(() => {
         if (avatar) formData.append('image', avatar, avatar.name);
         Object.entries(updatesData).forEach(([key, value]) => {
             // @ts-ignore
-            if (artist[key] !== updatesData[key]) {
+            if (user[key] !== updatesData[key]) {
                 // @ts-ignore
                 formData.append(key, updatesData[key]);
                 hasChanges = true;

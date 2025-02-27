@@ -7,12 +7,7 @@ export default class TrackService {
         if (!res.data) {
             throw new Error();
         }
-        const tracks = res.data.map((track) => {
-            const cur = { ...track, isFavourite: !!track.favouriteOfUsers?.length };
-            delete cur.favouriteOfUsers;
-            return cur;
-        });
-        return tracks;
+        return res.data;
     }
 
     static async getTrack(id: number): Promise<Track> {
@@ -28,6 +23,7 @@ export default class TrackService {
         if (!res.data) {
             throw new Error();
         }
+        console.log(res);
         return res.data;
     }
 

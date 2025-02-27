@@ -12,14 +12,14 @@ body {
     font: var(--font-m);
     color: var(--primary-color);
     background: var(--bg-color);
-    /*& *::selection {*/
-    /*    color: white;*/
-    /*    background: red;*/
-    /*}*/
-    /*& *::-moz-selection {*/
-    /*    color: blue;*/
-    /*    background: green;*/
-    /*}*/
+    & *::selection {
+        color: var(--primary-color);
+        background: var(--secondary-bg);
+    }
+    & *::-moz-selection {
+        color: var(--primary-color);
+        background: var(--secondary-bg);
+    }
 
     &::-webkit-scrollbar-track{
         background-color: var(--bg-color-content);

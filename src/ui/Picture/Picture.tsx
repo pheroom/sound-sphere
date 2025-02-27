@@ -2,7 +2,7 @@ import { memo } from 'react';
 import cls from './Picture.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import musicPlaceholder from '../../assets/musicPlaceholder.png';
-import userPlaceholder from '../../assets/avatarPlaceholder.jpg';
+import userPlaceholder from '../../assets/avatarPlaceholder.png';
 import { getFullFilePath } from '../../utils/getFullFilePath.ts';
 
 export enum PictureSize{

@@ -24,7 +24,7 @@ export const ArtistSignInPage = memo(() => {
 
     return (
         <div className={classNames(cls.ArtistSignInPage, {}, [])}>
-            <Form title="Sign In">
+            <Form title="Sign In As Artist">
                 <FormInput
                     autoFocus
                     placeholder="Username"

@@ -15,15 +15,20 @@ import { getUserAuthData } from '../../store/user/selectors/getUserAuthData.ts';
 import { useFetching } from '../../utils/useFetching.ts';
 import TrackService from '../../services/TrackService.ts';
 import { AppRoutes } from '../../routeConfig.tsx';
+import { Loader, LoaderSize } from '../../ui/Loader/Loader.tsx';
 
 interface TrackListProps {
     className?: string
     tracks?: Track[]
     linkFunc?: (id: number) => string
     actions?: [ReactNode, (id: number) => void][]
+    showFavActions?: boolean
+    isLoading?: boolean
 }
 
-export const TracksList = memo(({ className, tracks, actions, linkFunc = AppRoutes.getTrack }: TrackListProps) => {
+export const TracksList = memo(({
+    className, showFavActions, isLoading, tracks, actions, linkFunc = AppRoutes.getTrack,
+}: TrackListProps) => {
     const dispatch = useAppDispatch();
     const { queue, currentIndex, isActive, isPlaying } = useAppSelector(getPlayerData);
     const [favouriteTrack] = useFetching(TrackService.addUserFavouritesTrack);
@@ -50,6 +55,7 @@ export const TracksList = memo(({ className, tracks, actions, linkFunc = AppRout
 
     const favouriteTrackHandler = (track: Track) => {
         if (!user) return;
+        console.log(track);
         if (track.isFavourite) {
             unfavouriteTrack(track.id);
             track.isFavourite = false;
@@ -80,20 +86,28 @@ export const TracksList = memo(({ className, tracks, actions, linkFunc = AppRout
                             <ArtistsLinks className={cls.artistsLinks} artists={track.artists} />
                         </div>
                         <div className={cls.actions}>
-                            {/* {actions && actions.map(([icon, action], i) => ( */}
-                            {/*    <Button mode={ButtonMode.TERTIARY} isIcon key={i} onClick={() => action(track.id)}> */}
-                            {/*        {icon} */}
-                            {/*    </Button> */}
-                            {/* ))} */}
-                            <Button mode={ButtonMode.TERTIARY} isIcon key={i} onClick={() => favouriteTrackHandler(track)}>
-                                {track.isFavourite
-                                    ? <AddedIcon />
-                                    : <AddIcon />}
-                            </Button>
+                            {actions && actions.map(([icon, action], i) => (
+                                <Button mode={ButtonMode.TERTIARY} isIcon key={i} onClick={() => action(track.id)}>
+                                    {icon}
+                                </Button>
+                            ))}
+                            {showFavActions
+                                && (
+                                    <Button
+                                        mode={ButtonMode.TERTIARY}
+                                        isIcon
+                                        onClick={() => favouriteTrackHandler(track)}
+                                    >
+                                        {track.isFavourite
+                                            ? <AddedIcon />
+                                            : <AddIcon />}
+                                    </Button>
+                                )}
                         </div>
                     </div>
                 ))
-                : <i>No tracks added</i>}
+                : !isLoading && <i>No tracks added</i>}
+            {isLoading && <Loader size={LoaderSize.SMALL} />}
         </div>
     );
 });

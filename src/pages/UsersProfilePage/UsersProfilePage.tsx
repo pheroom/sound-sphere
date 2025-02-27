@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router';
 import cls from './UsersProfilePage.module.css';
 import { classNames } from '../../utils/classNames.ts';
 import { PageLoader } from '../../components/PageLoader/PageLoader.tsx';
-import { UserCard } from '../../components/UserCard/UserCard.tsx';
+import { UserCard, UserCardSize } from '../../components/UserCard/UserCard.tsx';
 import { ErrorPage } from '../ErrorPage/ErrorPage.tsx';
 import { useFetching } from '../../utils/useFetching.ts';
 import { User } from '../../models/User.ts';
@@ -29,7 +29,7 @@ export const UsersProfilePage = memo(() => {
     return (
         <div className={classNames(cls.UsersProfilePage, {}, [])}>
             <div className={cls.header}>
-                <UserCard user={user} className={cls.userCard} />
+                <UserCard user={user} size={UserCardSize.L} className={cls.userCard} />
             </div>
         </div>
     );

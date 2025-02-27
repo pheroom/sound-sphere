@@ -20,4 +20,15 @@
     /*flex-wrap: wrap;*/
 }
 
+.nav{
+    margin: 15px 0 10px;
+    display: flex;
+    /*flex-direction: column;*/
+    gap: 35px;
+    font-size: 17px;
+    font-weight: 500;
+    & span:hover{
+        color: var(--primary-hover-color);
+    }
+}
 

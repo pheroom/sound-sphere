@@ -10,7 +10,6 @@ import { checkAuthTarget } from './store/auth/services/checkAuthTarget.ts';
 import { PageLoader } from './components/PageLoader/PageLoader.tsx';
 import { getAuthIsLoading } from './store/auth/selectors/getAuthIsLoading.ts';
 import { getPlayerData } from './store/player/selectors/getPlayerData.ts';
-import { playerActions } from './store/player/playerSlice.ts';
 
 function App() {
     const dispatch = useAppDispatch();

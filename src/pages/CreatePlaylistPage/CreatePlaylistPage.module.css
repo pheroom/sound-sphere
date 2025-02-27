@@ -1,0 +1,7 @@
+.CreatePlaylistPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    height: 100%;
+}

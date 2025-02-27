@@ -7,6 +7,14 @@
         /*border-radius: var(--border-radius);*/
         /*border: 2px solid var(--primary-color);*/
     }
+    & span{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        & svg{
+            margin-top: 2px;
+        }
+    }
 }
 
 .accent {

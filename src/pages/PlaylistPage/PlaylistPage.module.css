@@ -1,15 +1,18 @@
-.AlbumPage {
+.PlaylistPage {
 
 }
 
-.albumCard{
+.playlistCard{
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 15px;
+    & a{
+        color: var(--grey-color);
+    }
 }
 
-.albumCardInfo{
+.playlistCardInfo{
     display: flex;
     flex-direction: column;
     gap: 8px;
